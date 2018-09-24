@@ -1,0 +1,24 @@
+/*------------------------------------*/
+/* FORM */
+/*------------------------------------*/
+@mixin form-input-default() {
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  border-radius: $input-border-radius;
+  outline: none;
+  border: $input-border;
+  line-height: $input-height;
+  padding: $input-inner-padding;
+  height: $input-height;
+  background-color: transparent;
+  font-size: 14px;
+  color: $color-text-regular;
+  transition: border-color .3s;
+  &:focus {
+    border-color: $color-primary;
+    transition: border-color .3s;
+  }
+  &::-webkit-input-placeholder {
+    color: $color-text-faded;
+  }
+}
