@@ -1,0 +1,38 @@
+{
+  "name": "vue-form-components",
+  "version": "0.1.0",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/antonreshetov/vue-form-components.git"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "main": "dist/vfc.common.js",
+  "style": "dist/vfc.css",
+  "license": "MIT",
+  "scripts": {
+    "build:bundle": "vue-cli-service build --target lib --name vfc ./src/index.js",
+    "lint": "vue-cli-service lint",
+    "test:unit": "vue-cli-service test:unit"
+  },
+  "dependencies": {
+    "vue": "^2.5.17"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.0.3",
+    "@vue/cli-plugin-eslint": "^3.0.3",
+    "@vue/cli-plugin-unit-jest": "^3.0.3",
+    "@vue/cli-service": "^3.0.3",
+    "@vue/eslint-config-standard": "^3.0.3",
+    "@vue/test-utils": "^1.0.0-beta.20",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-jest": "^23.0.1",
+    "node-sass": "^4.9.3",
+    "sass-loader": "^7.1.0",
+    "vue-svg-loader": "^0.10.0",
+    "vue-template-compiler": "^2.5.17"
+  }
+}
