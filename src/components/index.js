@@ -1,6 +1,7 @@
 import Input from './input/Input'
+import Button from './button/Button'
 
-const components = [Input]
+const components = [Input, Button]
 
 export default {
   install (Vue, options) {
