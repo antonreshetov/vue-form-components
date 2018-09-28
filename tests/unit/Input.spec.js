@@ -1,4 +1,4 @@
-import { shallowMount } from '@vue/test-utils'
+import { shallowMount, mount } from '@vue/test-utils'
 import Input from '../../src/components/input/Input.vue'
 
 describe('Input.vue', () => {
@@ -40,6 +40,23 @@ describe('Input.vue', () => {
     wrapper.setProps({ disabled: true })
     const disabledAttr = wrapper.find('input').attributes().disabled
     expect(disabledAttr).toContain('disabled')
+  })
+  it('input event (v-model)', () => {
+    const wrapper = mount({
+      template: `<vue-input v-model="inputVal"></vue-input>`,
+      components: {
+        [Input.name]: Input
+      },
+      data () {
+        return {
+          inputVal: null
+        }
+      }
+    })
+    const inputEl = wrapper.find('input')
+    inputEl.element.value = 'text'
+    inputEl.trigger('input')
+    expect(wrapper.vm.inputVal).toBe('text')
   })
   describe('slots', () => {
     it('prefix is rendered', () => {
