@@ -13,12 +13,31 @@
   background-color: transparent;
   font-size: 14px;
   color: $color-text-regular;
-  transition: border-color .3s;
+  transition: border-color 0.3s;
   &:focus {
     border-color: $color-primary;
-    transition: border-color .3s;
+    transition: border-color 0.3s;
   }
   &::-webkit-input-placeholder {
     color: $color-text-faded;
   }
+}
+/*------------------------------------*/
+/*  BUTTON  */
+/*------------------------------------*/
+@mixin button-hover-active($bg-color, $text-color, $lighten-amount, $darken-amount) {
+  background-color: $bg-color;
+  border-color: $bg-color;
+  color: $text-color;
+  &:hover {
+    background-color: lighten($bg-color, $lighten-amount);
+  }
+  &:active {
+    background-color: darken($bg-color, $darken-amount);
+  }
+}
+@mixin button-disabled($main-color, $lighten-amount) {
+  background-color: lighten($main-color, $lighten-amount);
+  border-color: lighten($main-color, $lighten-amount);
+  cursor: no-drop;
 }
