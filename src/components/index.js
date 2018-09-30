@@ -1,7 +1,8 @@
 import Input from './input/Input'
 import Button from './button/Button'
+import Checkbox from './checkbox/Checkbox.vue'
 
-const components = [Input, Button]
+const components = [Input, Button, Checkbox]
 
 export default {
   install (Vue, options) {
