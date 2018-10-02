@@ -14,12 +14,15 @@
   "style": "dist/vfc.css",
   "license": "MIT",
   "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build --dest docs",
     "build:bundle": "vue-cli-service build --target lib --name vfc ./src/index.js",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
-    "vue": "^2.5.17"
+    "vue": "^2.5.17",
+    "vue-router": "^3.0.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.3",
@@ -28,8 +31,11 @@
     "@vue/cli-service": "^3.0.3",
     "@vue/eslint-config-standard": "^3.0.3",
     "@vue/test-utils": "^1.0.0-beta.20",
+    "axios": "^0.18.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^23.0.1",
+    "highlight.js": "^9.12.0",
+    "marked": "^0.5.1",
     "node-sass": "^4.9.3",
     "sass-loader": "^7.1.0",
     "vue-svg-loader": "^0.10.0",
