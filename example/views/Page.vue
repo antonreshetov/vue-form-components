@@ -64,7 +64,7 @@ export default {
       if (this.$route.meta === 'docs') {
         axios.get(`/docs/${this.$route.params.component}.md`).then(res => {
           let vms
-          ;[this.html, vms] = parse(res.data)
+            ;[this.html, vms] = parse(res.data)
           this.$nextTick(() => {
             for (let i = 0; i < vms.length; i++) {
               document.getElementById(`demo-${i}`).appendChild(vms[i].$el)
