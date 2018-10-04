@@ -89,7 +89,7 @@ export default {
       const contentEl = document.querySelector('.content')
 
       elems.forEach(el => {
-        el.addEventListener('click', () => {
+        el.children[0].addEventListener('click', () => {
           const url = window.location.hash
           const re = /#[^\/].+/
 
