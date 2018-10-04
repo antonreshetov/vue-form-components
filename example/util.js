@@ -89,7 +89,7 @@ export function parse (markdown, cb) {
   renderer.heading = (text, level) => {
     return `<h${level} id="${sluggify(
       text
-    )}" class="anchor">${text}</h${level}>`
+    )}"><span class="anchor">${text}</span></h${level}>`
   }
 
   return [marked(markdown, { renderer }), vms]
