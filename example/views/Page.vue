@@ -61,8 +61,10 @@ export default {
 
   methods: {
     buildPage () {
+      const path = process.env.NODE_ENV === 'production' ? '/vue-form-components/docs/' : '/docs/'
+
       if (this.$route.meta === 'docs') {
-        axios.get(`/docs/${this.$route.params.component}.md`).then(res => {
+        axios.get(`${path}${this.$route.params.component}.md`).then(res => {
           let vms
             ;[this.html, vms] = parse(res.data)
           this.$nextTick(() => {
@@ -75,7 +77,7 @@ export default {
           })
         })
       } else {
-        axios.get('/docs/CHANGELOG.md').then(res => {
+        axios.get(`${path}CHANGELOG.md`).then(res => {
           this.html = parse(res.data)[0]
         })
       }
