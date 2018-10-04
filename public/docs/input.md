@@ -103,12 +103,13 @@ You can add for example icons
 </script>
 ```
 
-## Input attributes
+## Attributes
 
 | Attributes     | Description                                                            | Type               | Accepted values              | Default |
 | -------------- | ---------------------------------------------------------------------- | ------------------ | ---------------------------- | ------- |
 | `type`         | Type of input                                                          | `String`           | `text`, `number`, `textarea` | `text`  |
 | `value`        | Binding value                                                          | `String`, `Number` | -                            | -       |
+| `disabled`     | Disable the input                                                      | `Boolean`          | -                            | false   |
 | `placeholder`  | Placeholder of value                                                   | `String`           | -                            | -       |
 | `autocomplete` | Same as `autocomplete` in native input                                 | `Boolean`          | -                            | `false` |
 | `name`         | Same as `name` in native input                                         | `String`           | -                            | -       |
