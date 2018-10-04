@@ -74,12 +74,44 @@ export default {
             document.querySelectorAll('pre code').forEach(block => {
               hljs.highlightBlock(block)
             })
+            this.addScrollToHeading()
+            this.setScrollByUrlHash()
           })
         })
       } else {
         axios.get(`${path}CHANGELOG.md`).then(res => {
           this.html = parse(res.data)[0]
         })
+      }
+    },
+    addScrollToHeading () {
+      const elems = document.querySelectorAll('h2')
+      const contentEl = document.querySelector('.content')
+
+      elems.forEach(el => {
+        el.addEventListener('click', () => {
+          const url = window.location.hash
+          const re = /#[^\/].+/
+
+          if (re.test(url)) {
+            window.location.hash = url.replace(re, `#${el.id}`)
+          } else {
+            window.location.hash = `${window.location.hash}#${el.id}`
+          }
+
+          contentEl.scrollTo(0, el.offsetTop - 100)
+        })
+      })
+    },
+    setScrollByUrlHash () {
+      const url = window.location.hash
+      const re = /#[^\/].+/
+      const contentEl = document.querySelector('.content')
+
+      if (re.test(url)) {
+        const heading = url.match(re)
+        const el = document.querySelector(heading)
+        contentEl.scrollTo(0, el.offsetTop - 100)
       }
     }
   }
@@ -155,8 +187,7 @@ export default {
     grid-area: content;
     overflow-y: auto;
     height: calc(100vh - 150px);
-    padding-bottom: 50px;
-    padding-right: 50px;
+    padding: 0 50px 50px 25px;
     table.app-table {
       width: 100%;
       border-collapse: collapse;
