@@ -17,6 +17,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --dest docs",
     "build:bundle": "vue-cli-service build --target lib --name vfc ./src/index.js",
+    "deploy": "build/bin/gh-deploy.sh",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit"
   },
