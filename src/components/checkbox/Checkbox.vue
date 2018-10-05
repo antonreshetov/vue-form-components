@@ -16,9 +16,9 @@
       <div class="vue-checkbox__inner">
         <i class="icon-check" v-if="isChecked"></i>
       </div>
-      <span v-if="label">{{ label }}</span>
-      <span v-else class="vue-checkbox__label">
-        <slot></slot>
+      <span class="vue-checkbox__label">
+        <span v-if="label">{{ label }}</span>
+        <slot v-else></slot>
       </span>
     </label>
   </div>
@@ -30,7 +30,7 @@ export default {
 
   props: {
     checked: Boolean,
-    value: [String, Number, Object],
+    value: [String, Number, Object, Boolean],
     name: String,
     label: String,
     type: String,
