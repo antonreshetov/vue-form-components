@@ -38,7 +38,7 @@ export default {
 
   computed: {
     isGroup () {
-      if (this.$parent.$options.name === 'AppCheckboxGroup') return true
+      if (this.$parent.$options.name === 'VueCheckboxGroup') return true
     },
     isChecked () {
       if (!this.isGroup) return this.checked
