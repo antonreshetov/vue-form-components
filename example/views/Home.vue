@@ -10,8 +10,14 @@
 </template>
 
 <script>
+import { Button } from '../../src/components'
+
 export default {
-  name: 'Home'
+  name: 'Home',
+
+  components: {
+    [Button.name]: Button
+  }
 }
 </script>
 
@@ -34,6 +40,5 @@ export default {
   .description {
     margin: 10px 0 20px 0;
   }
-
 }
 </style>
