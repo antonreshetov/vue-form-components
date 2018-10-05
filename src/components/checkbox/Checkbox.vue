@@ -111,6 +111,14 @@ export default {
     &#{$r}--bordered {
       border-color: $color-primary;
     }
+    &#{$r}--disabled {
+      #{$r}__inner {
+        border-color: $color-grey-dark;
+      }
+      i {
+        color: $color-grey-dark;
+      }
+    }
   }
   &--disabled {
     cursor: no-drop;
