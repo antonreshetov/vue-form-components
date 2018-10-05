@@ -15,6 +15,7 @@
   "license": "MIT",
   "scripts": {
     "serve": "vue-cli-service serve",
+    "serve:docs": "vue-cli-service serve --mode docs",
     "build": "vue-cli-service build --dest docs",
     "build:bundle": "vue-cli-service build --target lib --name vfc ./src/index.js",
     "deploy": "build/bin/gh-deploy.sh",
