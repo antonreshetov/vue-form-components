@@ -1,22 +1,26 @@
 <template>
   <div class="vue-checkbox">
     <label
-    class="vue-checkbox"
-    :class="{'vue-checkbox--checked': isChecked}">
-    <input
-      type="checkbox"
-      :id="`vue-checkbox-${_uid}`"
-      :checked="isChecked"
-      :value="value"
-      @change="onChange">
-    <div class="vue-checkbox__inner">
-      <i class="icon-check" v-if="isChecked"></i>
-    </div>
-    <span v-if="label">{{ label }}</span>
-    <span v-else class="vue-checkbox__label">
-      <slot></slot>
-    </span>
-  </label>
+      class="vue-checkbox"
+      :class="{
+        'vue-checkbox--checked': isChecked,
+        'vue-checkbox--bordered': type === 'border',
+        'vue-checkbox--disabled': disabled
+        }">
+      <input
+        type="checkbox"
+        :id="`vue-checkbox-${_uid}`"
+        :checked="isChecked"
+        :value="value"
+        @change="onChange">
+      <div class="vue-checkbox__inner">
+        <i class="icon-check" v-if="isChecked"></i>
+      </div>
+      <span v-if="label">{{ label }}</span>
+      <span v-else class="vue-checkbox__label">
+        <slot></slot>
+      </span>
+    </label>
   </div>
 </template>
 
@@ -28,7 +32,12 @@ export default {
     checked: Boolean,
     value: [String, Number, Object],
     name: String,
-    label: String
+    label: String,
+    type: String,
+    disabled: {
+      type: Boolean,
+      default: false
+    }
   },
 
   model: {
@@ -55,6 +64,7 @@ export default {
 
   methods: {
     onChange () {
+      if (this.disabled) return
       if (!this.isGroup) return this.$emit('change', !this.checked)
 
       if (!this.isChecked) {
@@ -87,15 +97,38 @@ export default {
   $r: &;
   font-size: 14px;
   cursor: pointer;
-  margin-right: 10px;
-  display: table;
+  display: inline-table;
   color: $color-text-regular;
+  + #{$r} {
+    margin-left: 10px;
+  }
   &--checked {
     color: $color-primary;
     #{$r}__inner {
       background-color: $color-primary;
       border-color: $color-primary;
     }
+    &#{$r}--bordered {
+      border-color: $color-primary;
+    }
+  }
+  &--disabled {
+    cursor: no-drop;
+    #{$r}__inner {
+      background-color: $color-grey-light;
+      cursor: no-drop;
+    }
+    #{$r}__label {
+      color: $color-grey-dark;
+    }
+  }
+  &--bordered {
+    border: $input-border;
+    border-radius: $input-border-radius;
+    padding: $input-inner-padding;
+    line-height: calc(#{$input-height} - 2px);
+    box-sizing: content-box;
+    transition: all 0.2s;
   }
   &:last-of-type {
     margin-right: 0;
