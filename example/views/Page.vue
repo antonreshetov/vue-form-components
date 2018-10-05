@@ -122,7 +122,7 @@ export default {
 @import '../assets/variables';
 .page {
   display: grid;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: 270px 1fr;
   grid-template-rows: 70px 1fr;
   grid-template-areas:
     'header header'
