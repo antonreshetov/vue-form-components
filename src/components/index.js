@@ -13,4 +13,4 @@ export default {
   }
 }
 
-export { Input }
+export { Input, Button, Checkbox, CheckboxGroup }
