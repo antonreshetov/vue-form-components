@@ -41,6 +41,8 @@ Simple two state `true` and `false` checkbox
 
 ## Checkbox group
 
+Combine multiple checkboxes in group
+
 ```example
 <template>
   <vue-checkbox-group v-model="checkboxGroup">
