@@ -11,6 +11,7 @@
       <input
         type="radio"
         :id="`vue-radio-${_uid}`"
+        :name="name"
         :checked="isChecked"
         :value="value"
         @change="onChange">
@@ -31,6 +32,7 @@ export default {
     value: [String, Number],
     label: String,
     type: String,
+    name: String,
     disabled: {
       type: Boolean,
       default: false
