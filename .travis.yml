@@ -2,7 +2,7 @@ languange: node_js
 node_js:
   - stable
 script:
-  - npm run install
+  - npm install
   - npm run build
 deploy:
   provider: pages
