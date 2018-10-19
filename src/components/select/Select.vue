@@ -6,10 +6,25 @@
     @keydown.38="scrollByArrow"
     @keydown.40="scrollByArrow"
     @keydown.enter="onEnter">
+    <span
+      class="vue-select__tag"
+      v-if="multiple">
+      <span ref="tags" >
+        <span
+          class="vue-select__tag-item"
+          v-for="item in selected"
+          :key="item.value"
+          @click.stop="onRemoveTag(item)">
+          {{ item.label }}
+          <i class="icon-close"></i>
+        </span>
+      </span>
+    </span>
     <vue-input
-      v-model="selectedLabel"
+      v-model="selected.label"
       :readonly="true"
-      :placeholder="placeholder">
+      :placeholder="placeholder"
+      ref="input">
       <template slot="suffix">
         <i class="icon-chevron-down"></i>
       </template>
@@ -52,9 +67,12 @@ export default {
 
   props: {
     data: Array,
-    value: [String, Number],
+    value: [String, Number, Array],
     placeholder: String,
-    type: String
+    multiple: {
+      type: Boolean,
+      default: false
+    }
   },
 
   model: {
@@ -65,11 +83,12 @@ export default {
   data () {
     return {
       appendEl: '',
-      selectedLabel: '',
+      selected: this.multiple ? [] : {},
       showPopper: false,
       aheadPointer: 0,
       pointerPosTop: null,
-      viewportHeight: null
+      viewportHeight: null,
+      tagsHeight: null
     }
   },
 
@@ -80,29 +99,46 @@ export default {
           this.getViewportHeight()
           this.getPointerPosTop()
         })
+        this.$refs.input.$el.querySelector('input').focus()
       }
+    },
+    value () {
+      this.setInitValue()
+      if (this.multiple) this.refreshInputHeight()
     }
   },
 
   created () {
     this.setInitValue()
     this.$on('option:select', (e) => {
-      this.$emit('change', e.value)
-      this.selectedLabel = e.label
+      if (this.multiple) {
+        this.addItem(e)
+        this.refreshInputHeight()
+        this.$emit('change', this.selected)
+      } else {
+        this.selected = e
+        this.$emit('change', e.value)
+      }
       this.onClosePopper()
     })
   },
 
   mounted () {
     this.appendEl = this.$el
+    this.refreshInputHeight()
   },
 
   methods: {
     setInitValue () {
       if (!this.value) return
 
-      const selected = this.data.find(item => item.value === this.value)
-      this.selectedLabel = selected.label
+      if (this.multiple) {
+        this.selected = this.value.map(item => {
+          return this.data.find(i => i.value === item.value)
+        })
+      } else {
+        this.selected = this.data.find(item => item.value === this.value)
+      }
     },
     togglePopper () {
       this.showPopper = !this.showPopper
@@ -111,9 +147,14 @@ export default {
       if (this.showPopper) this.showPopper = false
     },
     onEnter () {
-      const option = this.data[this.aheadPointer]
-      this.$emit('change', option.value)
-      this.selectedLabel = option.label
+      const item = this.data[this.aheadPointer]
+
+      if (this.multiple) {
+        this.addItem(item)
+        this.$emit('change', this.selected)
+      } else {
+        this.$emit('change', item.value)
+      }
       this.showPopper = false
     },
     getViewportHeight () {
@@ -122,11 +163,33 @@ export default {
     getPointerPosTop () {
       this.pointerPosTop = this.$refs.list.children[this.aheadPointer].offsetTop
     },
+    getTagsHeight () {
+      if (!this.multiple) return
+
+      this.tagsHeight = this.$refs.tags.offsetHeight
+    },
+    setInputHeight () {
+      if (!this.multiple) return
+
+      const inputEL = this.$refs.input.$el.querySelector('input')
+
+      if (this.tagsHeight > 40) {
+        inputEL.style.height = this.tagsHeight + 14 + 'px'
+      } else {
+        inputEL.style.height = 40 + 'px'
+      }
+    },
+    addItem (item) {
+      const index = this.selected.findIndex(_item => _item.value === item.value)
+      index === -1 ? this.selected.push(item) : this.selected.splice(index, 1)
+    },
     scrollByArrow (e) {
       if (!this.data || !this.showPopper) return
 
       const optionItemHeight = this.$refs.list.children[0].offsetHeight
-      const popperInner = this.$refs.popper.$el.querySelector('.vue-popper__inner')
+      const popperInner = this.$refs.popper.$el.querySelector(
+        '.vue-popper__inner'
+      )
       const offsetTop = 10
       const offsetBottom = 6
 
@@ -141,9 +204,27 @@ export default {
       if (this.pointerPosTop < popperInner.scrollTop) {
         popperInner.scrollTop = this.pointerPosTop - offsetTop
       }
-      if (this.pointerPosTop > popperInner.scrollTop + this.viewportHeight - optionItemHeight) {
-        popperInner.scrollTop = this.pointerPosTop - this.viewportHeight + optionItemHeight + offsetBottom
+      if (
+        this.pointerPosTop >
+        popperInner.scrollTop + this.viewportHeight - optionItemHeight
+      ) {
+        popperInner.scrollTop =
+          this.pointerPosTop -
+          this.viewportHeight +
+          optionItemHeight +
+          offsetBottom
       }
+    },
+    refreshInputHeight () {
+      this.$nextTick(() => {
+        this.getTagsHeight()
+        this.setInputHeight()
+      })
+    },
+    onRemoveTag (tag) {
+      const index = this.selected.findIndex(item => item.value === tag.value)
+      this.selected.splice(index, 1)
+      this.$emit('change', this.selected)
     }
   }
 }
@@ -158,6 +239,39 @@ export default {
   $r: &;
   display: inline-block;
   cursor: pointer;
+  position: relative;
+  &__tag {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 2px 40px 2px 5px;
+    z-index: 10;
+    &-item {
+      box-sizing: border-box;
+      font-size: 14px;
+      background-color: $color-grey-light;
+      border: $input-border;
+      border-radius: $input-border-radius;
+      color: $color-text-regular;
+      padding: 2px 5px;
+      flex-shrink: 0;
+      margin: 2px;
+      display: inline-block;
+      > i {
+        position: relative;
+        top: 1px;
+        color: $color-grey-dark;
+        &:hover {
+          color: $color-text-regular;
+        }
+      }
+    }
+  }
   .vue-input {
     &__inner {
       cursor: pointer;

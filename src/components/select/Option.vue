@@ -24,7 +24,11 @@ export default {
 
   computed: {
     isSelected () {
-      return this.select.value === this.value
+      if (this.select.multiple) {
+        return !!this.select.selected.find(item => item.value === this.value)
+      } else {
+        return this.select.value === this.value
+      }
     },
     index () {
       if (!Array.isArray(this.select.data)) return
