@@ -180,7 +180,7 @@ export default {
       }
     },
     addItem (item) {
-      const index = this.selected.findIndex(_item => _item.value === item.value)
+      const index = this.selected.findIndex(i => i.value === item.value)
       index === -1 ? this.selected.push(item) : this.selected.splice(index, 1)
     },
     scrollByArrow (e) {
