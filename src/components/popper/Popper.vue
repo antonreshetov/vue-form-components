@@ -75,6 +75,9 @@ export default {
       }
       const mergedOptions = Object.assign({}, options, this.popperOptions)
       this.popper = new Popper(this.appendTo, popper, mergedOptions)
+      this.update()
+    },
+    update () {
       this.popper.scheduleUpdate()
     }
   }
