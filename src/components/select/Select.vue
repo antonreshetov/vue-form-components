@@ -119,8 +119,8 @@ export default {
       } else {
         this.selected = e
         this.$emit('change', e.value)
+        this.onClosePopper()
       }
-      this.onClosePopper()
     })
   },
 
