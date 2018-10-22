@@ -129,6 +129,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 10;
   }
   &__prefix {
     left: 0;
