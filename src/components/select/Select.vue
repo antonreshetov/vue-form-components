@@ -1,7 +1,10 @@
 <template>
   <div
     class="vue-select"
-    :class="{'vue-select--opened': showPopper}"
+    :class="{
+      'vue-select--opened': showPopper,
+      'vue-select--disabled': disabled
+      }"
     @click="togglePopper"
     @keydown.38="scrollByArrow"
     @keydown.40="scrollByArrow"
@@ -24,6 +27,7 @@
       v-model="selected.label"
       :readonly="true"
       :placeholder="placeholder"
+      :disabled="disabled"
       ref="input">
       <template slot="suffix">
         <i class="icon-chevron-down"></i>
@@ -70,6 +74,10 @@ export default {
     value: [String, Number, Array],
     placeholder: String,
     multiple: {
+      type: Boolean,
+      default: false
+    },
+    disabled: {
       type: Boolean,
       default: false
     }
@@ -142,6 +150,8 @@ export default {
       }
     },
     togglePopper () {
+      if (this.disabled) return
+
       this.showPopper = !this.showPopper
     },
     onClosePopper () {
@@ -288,6 +298,17 @@ export default {
       i {
         transform: rotate(180deg);
       }
+    }
+  }
+  &--disabled {
+    .vue-input__suffix {
+      i {
+        color: $color-grey-dark;
+      }
+    }
+    .vue-input__inner {
+      color: $color-grey-dark;
+      cursor: no-drop !important;
     }
   }
 }
