@@ -115,6 +115,7 @@ export default {
         this.addItem(e)
         this.refreshInputHeight()
         this.$emit('change', this.selected)
+        this.$refs.popper.update()
       } else {
         this.selected = e
         this.$emit('change', e.value)
