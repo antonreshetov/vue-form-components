@@ -5,6 +5,7 @@
       'vue-select__option--selected': isSelected,
       'vue-select__option--hovered': index === select.aheadPointer
       }"
+    :disabled="disabled"
     @click="onSelect"
     @mouseover="onHover">
     {{ label }}
@@ -19,7 +20,11 @@ export default {
 
   props: {
     value: [String, Number],
-    label: [String, Number]
+    label: [String, Number],
+    disabled: {
+      type: Boolean,
+      default: false
+    }
   },
 
   computed: {
@@ -38,7 +43,11 @@ export default {
 
   methods: {
     onSelect () {
-      this.select.$emit('option:select', { value: this.value, label: this.label })
+      this.select.$emit('option:select', {
+        value: this.value,
+        label: this.label,
+        disabled: this.disabled
+      })
     },
     onHover () {
       this.select.aheadPointer = this.index
@@ -55,8 +64,15 @@ export default {
   margin: 0 -10px;
   padding: 10px 15px;
   font-size: 14px;
+  &[disabled] {
+    cursor: no-drop !important;
+    color: $color-grey;
+  }
   &--hovered {
     background-color: $color-grey-light;
+    &[disabled] {
+      background-color: inherit;
+    }
   }
   &--selected {
     color: $color-primary;

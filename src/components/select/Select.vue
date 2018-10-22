@@ -180,6 +180,8 @@ export default {
       }
     },
     addItem (item) {
+      if (item.disabled) return
+
       const index = this.selected.findIndex(i => i.value === item.value)
       index === -1 ? this.selected.push(item) : this.selected.splice(index, 1)
     },
