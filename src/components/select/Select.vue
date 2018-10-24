@@ -16,10 +16,12 @@
         <span
           class="vue-select__tag-item"
           v-for="item in selected"
-          :key="item.value"
-          @click.stop="onRemoveTag(item)">
+          :key="item.value">
           {{ item.label }}
-          <i class="icon-close"></i>
+          <i
+            class="icon-close"
+            @click.stop="onRemoveTag(item)">
+          </i>
         </span>
       </span>
     </span>
