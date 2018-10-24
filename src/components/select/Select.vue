@@ -28,7 +28,7 @@
     <vue-input
       v-model="selected.label"
       :readonly="true"
-      :placeholder="value.length === 0 ? placeholder : ''"
+      :placeholder="computedPlaceholder"
       :disabled="disabled"
       :name="name"
       ref="input">
@@ -122,6 +122,15 @@ export default {
     value () {
       this.setInitValue()
       if (this.multiple) this.refreshInputHeight()
+    }
+  },
+
+  computed: {
+    computedPlaceholder () {
+      if (this.multiple) {
+        return this.selected.length === 0 ? this.placeholder : ''
+      }
+      return this.placeholder
     }
   },
 
