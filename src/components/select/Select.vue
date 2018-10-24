@@ -30,6 +30,7 @@
       :readonly="true"
       :placeholder="placeholder"
       :disabled="disabled"
+      :name="name"
       ref="input">
       <template slot="suffix">
         <i class="icon-chevron-down"></i>
@@ -87,7 +88,8 @@ export default {
     emptyText: {
       type: String,
       default: 'Empty list'
-    }
+    },
+    name: String
   },
 
   model: {
