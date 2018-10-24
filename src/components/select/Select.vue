@@ -293,6 +293,11 @@ export default {
       }
     }
   }
+  &__option {
+    &-list-empty {
+      font-size: 14px;
+    }
+  }
   .vue-input {
     &__inner {
       cursor: pointer;
