@@ -28,7 +28,7 @@
     <vue-input
       v-model="selected.label"
       :readonly="true"
-      :placeholder="placeholder"
+      :placeholder="value.length === 0 ? placeholder : ''"
       :disabled="disabled"
       :name="name"
       ref="input">
@@ -245,6 +245,7 @@ export default {
     },
     onRemoveTag (tag) {
       const index = this.selected.findIndex(item => item.value === tag.value)
+      this.$emit('remove-tag', this.selected[index])
       this.selected.splice(index, 1)
       this.$emit('change', this.selected)
       if (this.showPopper) this.$refs.popper.update()
