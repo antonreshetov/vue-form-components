@@ -42,7 +42,8 @@
       :fullSize="true"
       ref="popper">
       <div class="vue-select__option-list" ref="list">
-        <slot></slot>
+        <div v-if="!data.length" class="vue-select__option-list-empty">{{ emptyText }}</div>
+        <slot v-else></slot>
       </div>
     </vue-popper>
   </div>
@@ -82,6 +83,10 @@ export default {
     disabled: {
       type: Boolean,
       default: false
+    },
+    emptyText: {
+      type: String,
+      default: 'Empty list'
     }
   },
 
