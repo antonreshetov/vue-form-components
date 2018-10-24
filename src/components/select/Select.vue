@@ -245,7 +245,7 @@ export default {
       const index = this.selected.findIndex(item => item.value === tag.value)
       this.selected.splice(index, 1)
       this.$emit('change', this.selected)
-      this.$refs.popper.update()
+      if (this.showPopper) this.$refs.popper.update()
     }
   }
 }
