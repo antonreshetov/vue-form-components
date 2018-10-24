@@ -36,7 +36,7 @@ export default {
       }
     },
     index () {
-      if (!Array.isArray(this.select.data)) return
+      if (!Array.isArray(this.select.data) || !this.select.data.length) return
       return this.select.data.findIndex(item => item.value === this.value)
     }
   },
