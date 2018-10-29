@@ -27,7 +27,7 @@ export default {
     rules: Object,
     labelPosition: {
       type: String,
-      default: 'left'
+      default: 'right'
     },
     labelWidth: {
       type: String,
