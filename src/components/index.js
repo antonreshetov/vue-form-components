@@ -5,6 +5,8 @@ import CheckboxGroup from './checkbox/CheckboxGroup.vue'
 import Radio from './radio/Radio.vue'
 import Select from './select/Select.vue'
 import Option from './select/Option.vue'
+import Form from './form/Form.vue'
+import FormItem from './form/FormItem.vue'
 
 const components = [
   Input,
@@ -13,7 +15,9 @@ const components = [
   CheckboxGroup,
   Radio,
   Select,
-  Option
+  Option,
+  Form,
+  FormItem
 ]
 
 export default {
@@ -24,4 +28,14 @@ export default {
   }
 }
 
-export { Input, Button, Checkbox, CheckboxGroup, Radio, Select, Option }
+export {
+  Input,
+  Button,
+  Checkbox,
+  CheckboxGroup,
+  Radio,
+  Select,
+  Option,
+  Form,
+  FormItem
+}
