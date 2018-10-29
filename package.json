@@ -15,9 +15,9 @@
   "license": "MIT",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "serve:docs": "vue-cli-service serve --mode docs",
-    "build": "vue-cli-service build --dest docs",
-    "build:bundle": "vue-cli-service build --target lib --name vfc ./src/index.js",
+    "serve:docs": "APP_TARGET=docs vue-cli-service serve --mode docs",
+    "build": "APP_TARGET=docs vue-cli-service build --dest docs",
+    "build:bundle": "vue-cli-service build --target lib --name vfc ./src/components/index.js",
     "deploy": "build/bin/gh-deploy.sh",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit"

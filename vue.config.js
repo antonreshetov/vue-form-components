@@ -1,14 +1,13 @@
-const isProd =
-  process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'docs'
 const isDev = process.env.NODE_ENV === 'development'
+const isDocs = process.env.APP_TARGET === 'docs'
 
 module.exports = {
-  baseUrl: isProd ? '/vue-form-components/' : '/',
+  baseUrl: isDocs ? '/vue-form-components/' : '/',
 
   chainWebpack: config => {
     config.entryPoints.delete('app')
 
-    if (isProd) {
+    if (isDocs) {
       config
         .entry('docs')
         .add('./example/main.js')
