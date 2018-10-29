@@ -273,6 +273,7 @@ export default {
   display: inline-block;
   cursor: pointer;
   position: relative;
+  width: 100%;
   &__tag {
     position: absolute;
     top: 0;

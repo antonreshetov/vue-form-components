@@ -105,8 +105,10 @@ export default {
   position: relative;
   font-family: $font;
   font-size: $input-font-size;
+  width: 100%;
   &__inner {
     position: relative;
+    width: 100%;
     @include form-input-default();
     &[disabled] {
       cursor: no-drop;
