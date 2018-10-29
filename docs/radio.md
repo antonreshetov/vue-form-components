@@ -95,7 +95,7 @@
 | ---------- | ------------------------------ | ------------------ | --------------- | ------- |
 | `value`    | Value of radio                 | `String`, `Number` | -               | -       |
 | `type`     | Type of radio                  | `String`           | `border`        | -       |
-| `disabled` | Disable the radio              | `Boolean`          | -               | false   |
+| `disabled` | Disable the radio              | `Boolean`          | -               | `false` |
 | `label`    | Label of the radio             | `String`           | -               | -       |
 | `name`     | Same as `name` in native radio | `String`           | -               | -       |
 
