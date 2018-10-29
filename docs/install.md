@@ -18,7 +18,7 @@ To use in your project, just import vfc and install into Vue.
 import Vue from 'vue'
 import App from './App.vue'
 import VFC from 'vfc'
-import 'vfc/vfc.css'
+import 'vfc/dist/vfc.css'
 
 Vue.use(VFC)
 
@@ -35,7 +35,7 @@ new Vue({
 </template>
 
 <script>
-import 'vfc/vfc.css'
+import 'vfc/dist/vfc.css'
 import { Input } from 'vfc'
 
 export default {
