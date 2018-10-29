@@ -1,5 +1,6 @@
 {
-  "name": "vue-form-components",
+  "name": "vfc",
+  "description": "Vue form components with validation",
   "version": "0.1.0",
   "private": false,
   "repository": {
