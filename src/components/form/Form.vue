@@ -31,7 +31,7 @@ export default {
     },
     labelWidth: {
       type: String,
-      default: '150px'
+      default: '100px'
     }
   },
 
