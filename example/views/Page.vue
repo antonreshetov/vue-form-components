@@ -139,6 +139,7 @@ export default {
       font-size: 18px;
       font-weight: 500;
       a {
+        color: inherit;
         &:hover {
           color: inherit;
         }
@@ -176,6 +177,7 @@ export default {
           display: block;
           padding: 10px 0;
           font-weight: 400;
+          color: inherit;
           &.active {
             color: $color-primary;
           }
@@ -217,12 +219,15 @@ export default {
     background-color: $color-grey-light;
   }
   a {
-    color: inherit;
+    color: $color-primary;
     text-decoration: none;
     transition: all 0.3s;
     &:hover {
       color: $color-primary;
     }
+  }
+  p {
+    line-height: 1.5em;
   }
 }
 </style>
