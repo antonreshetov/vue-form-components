@@ -125,10 +125,10 @@ export default {
     margin-bottom: 22px;
     display: flex;
     flex-flow: row wrap;
+    position: relative;
     &-label {
       box-sizing: border-box;
       font-size: 14px;
-      flex-basis: 150px;
       color: $color-text-regular;
       padding-right: 20px;
       align-self: center;
