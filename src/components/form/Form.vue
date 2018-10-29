@@ -37,7 +37,7 @@ export default {
 
   data () {
     return {
-      validator: new AsyncValidator(this.rules)
+      validator: this.rules ? new AsyncValidator(this.rules) : undefined
     }
   },
 
