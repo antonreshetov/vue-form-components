@@ -91,6 +91,6 @@ Simple button component
 
 ## Events
 
-| Name    | Description                  | Parameters |
-| ------- | ---------------------------- | ---------- |
-| `click` | Triggers when button clicked | -          |
+| Name    | Description                  | Payload |
+| ------- | ---------------------------- | ------- |
+| `click` | Triggers when button clicked | -       |
