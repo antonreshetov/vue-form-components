@@ -229,5 +229,15 @@ export default {
   p {
     line-height: 1.5em;
   }
+  .vue-input,
+  .vue-select {
+    width: 250px;
+  }
+  .vue-form {
+    .vue-input,
+    .vue-select {
+      width: 100%;
+    }
+  }
 }
 </style>
