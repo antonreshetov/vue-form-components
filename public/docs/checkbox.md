@@ -95,7 +95,7 @@ Combine multiple checkboxes in group
 | ---------- | ----------------------------------------- | ------------------ | --------------- | ------- |
 | `value`    | Value of checkbox when used in group mode | `String`, `Number` | -               | -       |
 | `type`     | Type of checkbox                          | `String`           | `border`        | -       |
-| `disabled` | Disable the checkbox                      | `Boolean`          | -               | false   |
+| `disabled` | Disable the checkbox                      | `Boolean`          | -               | `false` |
 | `label`    | Label of the checkbox                     | `String`           | -               | -       |
 | `name`     | Same as `name` in native checkbox         | `String`           | -               | -       |
 

@@ -87,7 +87,7 @@ Simple button component
 | Attributes | Description        | Type      | Accepted values                           | Default |
 | ---------- | ------------------ | --------- | ----------------------------------------- | ------- |
 | `type`     | Type of button     | `String`  | `primary`, `success`, `warning`, `danger` | -       |
-| `disabled` | Disable the button | `Boolean` | -                                         | false   |
+| `disabled` | Disable the button | `Boolean` | -                                         | `false` |
 
 ## Events
 

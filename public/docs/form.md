@@ -219,11 +219,11 @@ See more information at [async-validator](https://github.com/yiminghe/async-vali
 
 ## Form methods
 
-| Method                        | Description                            | Parameters               |
-| ----------------------------- | -------------------------------------- | ------------------------ |
-| `validate()`                  | Validate all form item. Return promise |                          |
-| `resetValidation()`           | Remove all validation result           |                          |
-| `resetFieldValidation(field)` | Remove all validation result           | `field` - Field to reset |
+| Method                                | Description                              | Parameters               |
+| ------------------------------------- | ---------------------------------------- | ------------------------ |
+| `validate()`                          | Validate all form item. Return `Promise` |                          |
+| `resetValidation()`                   | Remove all validation result             |                          |
+| `resetFieldValidation(field: string)` | Remove field validation result           | `field` - Field to reset |
 
 ## Form item attributes
 
