@@ -11,6 +11,15 @@
     "dist",
     "src"
   ],
+  "keywords": [
+    "vue",
+    "vuejs",
+    "vue-component",
+    "vue-form",
+    "components",
+    "form",
+    "form-validation"
+  ],
   "main": "dist/vfc.common.js",
   "style": "dist/vfc.css",
   "license": "MIT",
