@@ -56,6 +56,10 @@ export default {
   watch: {
     '$route.path' () {
       this.buildPage()
+      if (process.env.NODE_ENV === 'production') {
+        window.ga('set', 'page', this.$route.path)
+        window.ga('send', 'pageview')
+      }
     }
   },
 
