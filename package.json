@@ -26,9 +26,8 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "serve:docs": "APP_TARGET=docs vue-cli-service serve --mode docs",
-    "build": "APP_TARGET=docs vue-cli-service build --dest docs",
-    "build:bundle": "vue-cli-service build --target lib --name vfc ./src/components/index.js",
-    "deploy": "build/bin/gh-deploy.sh",
+    "build:docs": "APP_TARGET=docs vue-cli-service build --dest docs",
+    "build": "vue-cli-service build --target lib --name vfc ./src/components/index.js",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit"
   },
