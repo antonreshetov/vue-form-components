@@ -18,7 +18,7 @@ You can download latest version from the Github: Download
 
 ### Global
 
-To use in your project, just import vue-form-component and install into Vue.
+To use in your project, just import vfc and install into Vue.
 
 ```js
 import Vue from 'vue'
@@ -50,6 +50,22 @@ export default {
   }
 }
 </script>
+```
+
+Full component list:
+
+```js
+import {
+  Input,
+  Button,
+  Checkbox,
+  CheckboxGroup,
+  Radio,
+  Select,
+  Option,
+  Form,
+  FormItem
+} from 'vfc'
 ```
 
 ## License
