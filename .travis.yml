@@ -3,7 +3,7 @@ node_js:
   - stable
 script:
   - npm install
-  - npm run build
+  - npm run build:docs
 deploy:
   provider: pages
   skip-cleanup: true
