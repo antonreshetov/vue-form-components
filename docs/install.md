@@ -46,6 +46,20 @@ export default {
 </script>
 ```
 
+```js
+import {
+  Input,
+  Button,
+  Checkbox,
+  CheckboxGroup,
+  Radio,
+  Select,
+  Option,
+  Form,
+  FormItem
+} from 'vfc'
+```
+
 ## License
 
 MIT © 2018-present [Anton Reshetov](http://antonreshetov.com)
