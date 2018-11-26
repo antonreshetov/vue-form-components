@@ -91,7 +91,6 @@ export default {
     },
     addScrollToHeading () {
       const elems = document.querySelectorAll('h2')
-      const contentEl = document.querySelector('.content')
 
       elems.forEach(el => {
         el.children[0].addEventListener('click', () => {
@@ -104,19 +103,18 @@ export default {
             window.location.hash = `${window.location.hash}#${el.id}`
           }
 
-          contentEl.scrollTo(0, el.offsetTop - 100)
+          this.$refs.content.scrollTo(0, el.offsetTop - 100)
         })
       })
     },
     setScrollByUrlHash () {
       const url = window.location.hash
       const re = /#[^\/].+/
-      const contentEl = document.querySelector('.content')
 
       if (re.test(url)) {
         const heading = url.match(re)
         const el = document.querySelector(heading)
-        contentEl.scrollTo(0, el.offsetTop - 100)
+        this.$refs.content.scrollTo(0, el.offsetTop - 100)
       }
     },
     scrollToTop () {
