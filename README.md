@@ -1,4 +1,13 @@
-# VFC - Vue form components
+# VFC - Vue form components ![tweet](https://img.shields.io/twitter/url/https/github.com/antonreshetov/vue-form-components.svg?style=social)
+
+![travis](https://img.shields.io/travis/antonreshetov/vue-form-components.svg)
+![npm](https://img.shields.io/npm/v/vfc.svg)
+![issue](https://img.shields.io/github/issues/antonreshetov/vue-form-components.svg)
+![license](https://img.shields.io/github/license/antonreshetov/vue-form-components.svg)
+
+## Documentation
+
+[https://antonreshetov.github.io/vue-form-components](https://antonreshetov.github.io/vue-form-components/)
 
 ## Install
 
@@ -41,14 +50,14 @@ new Vue({
 </template>
 
 <script>
-import 'vfc/dist/vfc.css'
-import { Input } from 'vfc'
+  import 'vfc/dist/vfc.css'
+  import { Input } from 'vfc'
 
-export default {
-  components: {
-    [Input.name]: Input
+  export default {
+    components: {
+      [Input.name]: Input
+    }
   }
-}
 </script>
 ```
 
