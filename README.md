@@ -1,4 +1,4 @@
-# VFC - Vue form components ![tweet](https://img.shields.io/twitter/url/https/github.com/antonreshetov/vue-form-components.svg?style=social)
+# <img src="./example/assets/logo.svg" style="width: 30px; position: relative; top: 5px"> VFC - Vue form components ![tweet](https://img.shields.io/twitter/url/https/github.com/antonreshetov/vue-form-components.svg?style=social)
 
 ![travis](https://img.shields.io/travis/antonreshetov/vue-form-components.svg)
 ![npm](https://img.shields.io/npm/v/vfc.svg)
