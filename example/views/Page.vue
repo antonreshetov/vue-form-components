@@ -2,7 +2,7 @@
   <div class="page">
     <div class="header">
       <div class="header__logo">
-        <router-link to="/">Vue Form Components</router-link></div>
+        <router-link to="/"><img src="../assets/logo.svg" alt=""> Vue Form Components</router-link></div>
       <div class="header__link">
         <router-link to="/changelog">Changelog</router-link>
         <a href="https://github.com/antonreshetov/vue-form-components" target="_blank">Github</a>
@@ -144,6 +144,12 @@ export default {
       padding-left: 50px;
       font-size: 18px;
       font-weight: 500;
+      display: flex;
+      img {
+        width: 25px;
+        position: relative;
+        top: 6px;
+      }
       a {
         color: inherit;
         &:hover {

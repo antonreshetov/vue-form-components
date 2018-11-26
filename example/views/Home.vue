@@ -1,7 +1,9 @@
 <template>
   <div class="home">
     <div class="home__hero">
-      <div class="logo">VFC</div>
+      <div class="logo">
+        <img src="../assets/logo.svg" alt="">
+      </div>
       <div class="logo__text">Vue Form Components</div>
       <div class="description">Clean & minimal vue form elements with validation</div>
       <router-link to="/components/install"><vue-button>Get started</vue-button></router-link>
