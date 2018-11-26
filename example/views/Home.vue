@@ -33,8 +33,10 @@ export default {
   }
   .logo {
     font-size: 42px;
+    font-weight: 400;
     &__text {
       font-size: 18px;
+      font-weight: 400;
     }
   }
   .description {
