@@ -4,6 +4,7 @@
 <h1 align="center">Vue Form Components</h1>
 <p align="center">
   <img src="https://img.shields.io/travis/antonreshetov/vue-form-components.svg">
+  <img src="https://img.shields.io/bundlephobia/minzip/vfc.svg">
   <img src="https://img.shields.io/github/license/antonreshetov/vue-form-components.svg">
 </p>
 
