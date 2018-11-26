@@ -8,9 +8,6 @@
   <img src="https://img.shields.io/github/issues/antonreshetov/vue-form-components.svg">
   <img src="https://img.shields.io/github/license/antonreshetov/vue-form-components.svg">
 </p>
-<p align="center">
-  <img src="https://img.shields.io/twitter/url/https/github.com/antonreshetov/vue-form-components.svg?style=social">
-</p>
 
 ## Documentation
 
