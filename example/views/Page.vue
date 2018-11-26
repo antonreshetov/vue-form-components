@@ -26,7 +26,7 @@
         </div>
       </nav>
     </div>
-    <div class="content">
+    <div class="content" ref="content">
       <div id="html" v-html="html"></div>
     </div>
   </div>
@@ -78,6 +78,7 @@ export default {
             document.querySelectorAll('pre code').forEach(block => {
               hljs.highlightBlock(block)
             })
+            this.scrollToTop()
             this.addScrollToHeading()
             this.setScrollByUrlHash()
           })
@@ -117,6 +118,9 @@ export default {
         const el = document.querySelector(heading)
         contentEl.scrollTo(0, el.offsetTop - 100)
       }
+    },
+    scrollToTop () {
+      this.$refs.content.scrollTop = 0
     }
   }
 }
