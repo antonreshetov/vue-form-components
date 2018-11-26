@@ -1,9 +1,16 @@
-# <img src="./example/assets/logo.svg" style="width: 30px; position: relative; top: 5px"> VFC - Vue form components ![tweet](https://img.shields.io/twitter/url/https/github.com/antonreshetov/vue-form-components.svg?style=social)
-
-![travis](https://img.shields.io/travis/antonreshetov/vue-form-components.svg)
-![npm](https://img.shields.io/npm/v/vfc.svg)
-![issue](https://img.shields.io/github/issues/antonreshetov/vue-form-components.svg)
-![license](https://img.shields.io/github/license/antonreshetov/vue-form-components.svg)
+<p align="center">
+<img src="./example/assets/logo.svg" style="margin-bottom: -20px">
+</p>
+<h1 align="center">Vue form components</h1>
+<p align="center">
+<img src="https://img.shields.io/travis/antonreshetov/vue-form-components.svg">
+<img src="https://img.shields.io/travis/antonreshetov/vue-form-components.svg">
+<img src="https://img.shields.io/github/issues/antonreshetov/vue-form-components.svg">
+<img src="https://img.shields.io/github/license/antonreshetov/vue-form-components.svg">
+</p>
+<p align="center">
+<img src="https://img.shields.io/twitter/url/https/github.com/antonreshetov/vue-form-components.svg?style=social">
+</p>
 
 ## Documentation
 
