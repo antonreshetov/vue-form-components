@@ -12,17 +12,35 @@
     <span
       class="vue-select__tag"
       v-if="multiple">
-      <span ref="tags" >
-        <span
-          class="vue-select__tag-item"
-          v-for="item in selected"
-          :key="item.value">
-          {{ item.label }}
-          <i
-            class="icon-close"
-            @click.stop="onRemoveTag(item)">
-          </i>
-        </span>
+      <span ref="tags">
+        <template v-for="(item, index) in selected">
+          <span
+            v-if="collapseTags && index < 1"
+            class="vue-select__tag-item"
+            :key="item.value">
+            {{ item.label }}
+            <i
+              class="icon-close"
+              @click.stop="onRemoveTag(item)">
+            </i>
+          </span>
+          <span
+            v-if="collapseTags && index === 1"
+            :key="item.value"
+            class="vue-select__tag-item vue-select__tag-item--collapsed">
+            +{{ selected.length - 1 }}
+          </span>
+          <span
+            v-if="!collapseTags"
+            class="vue-select__tag-item"
+            :key="item.value">
+            {{ item.label }}
+            <i
+              class="icon-close"
+              @click.stop="onRemoveTag(item)">
+            </i>
+          </span>
+        </template>
       </span>
     </span>
     <vue-input
@@ -78,6 +96,10 @@ export default {
     value: [String, Number, Array],
     placeholder: String,
     multiple: {
+      type: Boolean,
+      default: false
+    },
+    collapseTags: {
       type: Boolean,
       default: false
     },
