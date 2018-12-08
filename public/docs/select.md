@@ -118,6 +118,19 @@ Multiple select uses tags to display selected options.
       :label="i.label">
     </vue-option>
   </vue-select>
+  <vue-select
+    v-model="selected2"
+    :data="options"
+    placeholder="Select"
+    :multiple="true"
+    :collapse-tags="true">
+    <vue-option
+      v-for="i in options"
+      :key="i.value"
+      :value="i.value"
+      :label="i.label">
+    </vue-option>
+  </vue-select>
 </template>
 <script>
   export default {
@@ -128,7 +141,8 @@ Multiple select uses tags to display selected options.
             { label: 'label 2', value: 2 },
             { label: 'label 3', value: 3 }
         ],
-        selected: []
+        selected: [],
+        selected2: []
       }
     }
   }
@@ -137,14 +151,15 @@ Multiple select uses tags to display selected options.
 
 ## Select attributes
 
-| Attributes    | Description                             | Type      | Accepted values | Default |
-| ------------- | --------------------------------------- | --------- | --------------- | ------- |
-| `data`        | List of select options                  | `Array`   | -               | -       |
-| `multiple`    | Multiple select options                 | `Boolean` |                 | `false` |
-| `disabled`    | Disable the select                      | `Boolean` | -               | `false` |
-| `placeholder` | Placeholder of select                   | `String`  | -               | -       |
-| `name`        | Same as `name` in native select         | `String`  | -               | -       |
-| `empty-text`  | Displayed text when there is no options | `String`  | -               | -       |
+| Attributes      | Description                                     | Type      | Accepted values | Default |
+| --------------- | ----------------------------------------------- | --------- | --------------- | ------- |
+| `data`          | List of select options                          | `Array`   | -               | -       |
+| `multiple`      | Multiple select options                         | `Boolean` |                 | `false` |
+| `collapse-tags` | Collapse tags to a text when multiple selecting | `Boolean` |                 | `false` |
+| `disabled`      | Disable the select                              | `Boolean` | -               | `false` |
+| `placeholder`   | Placeholder of select                           | `String`  | -               | -       |
+| `name`          | Same as `name` in native select                 | `String`  | -               | -       |
+| `empty-text`    | Displayed text when there is no options         | `String`  | -               | -       |
 
 ## Option attributes
 
