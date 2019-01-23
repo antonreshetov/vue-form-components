@@ -9,6 +9,7 @@
       </div>
     </div>
     <div class="sidebar">
+      <carbon-ad/>
       <nav class="nav">
         <div class="nav__category">Development</div>
         <div
@@ -38,9 +39,14 @@ import axios from 'axios'
 import hljs from 'highlight.js'
 import 'highlight.js/styles/color-brewer.css'
 import nav from '../navigation'
+import CarbonAd from '../components/CarbonAd'
 
 export default {
   name: 'Page',
+
+  components: {
+    CarbonAd
+  },
 
   data () {
     return {
@@ -175,7 +181,7 @@ export default {
     grid-area: sidebar;
     padding-left: 50px;
     .nav {
-      margin-top: 25px;
+      margin-top: 220px;
       &__category {
         margin-bottom: 15px;
         font-size: 16px;
