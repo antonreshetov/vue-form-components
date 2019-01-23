@@ -1,6 +1,17 @@
 import { shallowMount, mount } from '@vue/test-utils'
 import Input from '../../src/components/input/Input.vue'
 
+const defaultProps = {
+  placeholder: 'text',
+  autocomplete: true,
+  name: 'text',
+  disabled: true,
+  readonly: true,
+  min: 1,
+  max: 1,
+  rows: 1
+}
+
 describe('Input.vue', () => {
   it('is rendered as input', () => {
     const wrapper = shallowMount(Input, {
@@ -28,12 +39,29 @@ describe('Input.vue', () => {
     wrapper.setProps({ type: 'textarea' })
     expect(wrapper.find('textarea').exists()).toBe(true)
   })
-  it('placeholder is rendered ', () => {
+  it('input attributes is rendered', () => {
     const wrapper = shallowMount(Input)
-    wrapper.setProps({ placeholder: 'text' })
-    const placeholderAttr = wrapper.find('input').attributes().placeholder
-    expect(wrapper.props().placeholder).toBe('text')
-    expect(placeholderAttr).toContain('text')
+    wrapper.setProps(defaultProps)
+    const attrs = wrapper.find('input').attributes()
+    expect(attrs.type).toContain('text')
+    expect(attrs.autocomplete).toContain('off')
+    expect(attrs.placeholder).toContain('text')
+    expect(attrs.name).toContain('text')
+    expect(attrs.disabled).toContain('disabled')
+    expect(attrs.readonly).toContain('readonly')
+    expect(attrs.min).toContain(1)
+    expect(attrs.max).toContain(1)
+  })
+  it('textarea attributes is rendered', () => {
+    const wrapper = shallowMount(Input)
+    wrapper.setProps({ ...defaultProps, type: 'textarea' })
+    const attrs = wrapper.find('textarea').attributes()
+    expect(attrs.type).toContain('textarea')
+    expect(attrs.placeholder).toContain('text')
+    expect(attrs.name).toContain('text')
+    expect(attrs.disabled).toContain('disabled')
+    expect(attrs.readonly).toContain('readonly')
+    expect(attrs.rows).toContain(1)
   })
   it('is disabled ', () => {
     const wrapper = shallowMount(Input)
