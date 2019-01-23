@@ -26,6 +26,7 @@
     <input
       v-if="type !== 'textarea'"
       class="vue-input__inner"
+      :name="name"
       :type="type"
       :value="value"
       :placeholder="placeholder"
@@ -39,7 +40,12 @@
     <textarea
       v-else
       class="vue-textarea__inner"
+      :name="name"
+      :type="type"
       :placeholder="placeholder"
+      :disabled="disabled"
+      :readonly="readonly"
+      :value="value"
       :rows="rows">
     </textarea>
     <div
@@ -202,6 +208,10 @@ export default {
     height: auto;
     line-height: 1.5;
     resize: vertical;
+    &[disabled] {
+      cursor: no-drop;
+      background-color: $color-grey-light;
+    }
   }
 }
 </style>
