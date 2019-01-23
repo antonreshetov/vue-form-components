@@ -13,6 +13,7 @@
         :id="`vue-radio-${_uid}`"
         :name="name"
         :checked="isChecked"
+        :disabled="disabled"
         :value="value"
         @change="onChange">
     </span>

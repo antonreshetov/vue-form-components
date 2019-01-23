@@ -11,6 +11,8 @@
         type="checkbox"
         :id="`vue-checkbox-${_uid}`"
         :checked="isChecked"
+        :name="name"
+        :disabled="disabled"
         :value="value"
         @change="onChange">
       <div class="vue-checkbox__inner">
