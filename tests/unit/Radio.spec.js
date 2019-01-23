@@ -37,6 +37,13 @@ describe('Radio.vue', () => {
     })
     expect(wrapper.find('.vue-radio--disabled').exists()).toBe(true)
   })
+  it('attributes is rendered', () => {
+    const wrapper = shallowMount(Radio)
+    wrapper.setProps({ name: 'text', disabled: true })
+    const attrs = wrapper.find('input').attributes()
+    expect(attrs.name).toContain('text')
+    expect(attrs.disabled).toContain('disabled')
+  })
   it('is checked', () => {
     const wrapper = mount({
       template: '<vue-radio v-model="radio" value="1"></vue-radio>',

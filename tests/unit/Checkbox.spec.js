@@ -28,6 +28,13 @@ describe('Checkbox.vue', () => {
     })
     expect(wrapper.find('.vue-checkbox__label span').text()).toBe('label')
   })
+  it('attributes is rendered', () => {
+    const wrapper = shallowMount(Checkbox)
+    wrapper.setProps({ name: 'text', disabled: true })
+    const attrs = wrapper.find('input').attributes()
+    expect(attrs.name).toContain('text')
+    expect(attrs.disabled).toContain('disabled')
+  })
   it('is checked', () => {
     const wrapper = mount({
       template: `<vue-checkbox v-model="check"></vue-checkbox>`,
