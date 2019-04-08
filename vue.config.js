@@ -2,7 +2,7 @@ const isDev = process.env.NODE_ENV === 'development'
 const isDocs = process.env.APP_TARGET === 'docs'
 
 module.exports = {
-  baseUrl: isDocs ? '/vue-form-components/' : '/',
+  publicPath: isDocs ? '/vue-form-components/' : '/',
 
   chainWebpack: config => {
     config.entryPoints.delete('app')
