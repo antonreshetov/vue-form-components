@@ -1489,13 +1489,6 @@ async-limiter@~1.0.0:
   resolved "https://registry.yarnpkg.com/async-limiter/-/async-limiter-1.0.0.tgz#78faed8c3d074ab81f22b4e985d79e8738f720f8"
   integrity sha512-jp/uFnooOiO+L211eZOoSyzpOITMXx1rBITauYykG3BRYPu8h0UcxsPNB04RR5vo4Tyz3+ay17tR6JVf9qzYWg==
 
-async-validator@^1.10.0:
-  version "1.10.0"
-  resolved "https://registry.yarnpkg.com/async-validator/-/async-validator-1.10.0.tgz#59a392a1b48565c2eb43faddb4e54d7d86dce293"
-  integrity sha512-tjkUJ3OXURZbm1nrlU2QtH0XJe4YvhN1J9AYiKFN9ODBqt0AFIE6YZdZByrWG2SidPUOOK5KIAsqskqFj/43ZQ==
-  dependencies:
-    babel-runtime "6.x"
-
 async@^1.5.2:
   version "1.5.2"
   resolved "https://registry.yarnpkg.com/async/-/async-1.5.2.tgz#ec6a61ae56480c0c3cb241c95618e20892f9672a"
@@ -1707,7 +1700,7 @@ babel-register@^6.26.0:
     mkdirp "^0.5.1"
     source-map-support "^0.4.15"
 
-babel-runtime@6.x, babel-runtime@^6.22.0, babel-runtime@^6.26.0:
+babel-runtime@^6.22.0, babel-runtime@^6.26.0:
   version "6.26.0"
   resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.26.0.tgz#965c7058668e82b55d7bfe04ff2337bc8b5647fe"
   integrity sha1-llxwWGaOgrVde/4E/yM3vItWR/4=
@@ -9895,6 +9888,11 @@ vary@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
+
+vee-validate@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/vee-validate/-/vee-validate-2.2.0.tgz#0dcb6251a50cde9a3a1e924c917cc3d0a543b661"
+  integrity sha512-s72VQcl1DWTNQKQyHtUDcU536dIx/GYDnCObDj4AXDZtWnqM3rXbgp7FCT3D2q9HFKw7IykW9bVrClhPBeQnrw==
 
 vendors@^1.0.0:
   version "1.0.2"
