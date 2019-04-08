@@ -51,6 +51,7 @@
     <vue-input
       ref="input"
       v-model="selected.label"
+      v-click-outside="onClosePopper"
       :readonly="true"
       :placeholder="computedPlaceholder"
       :disabled="disabled"
@@ -63,7 +64,6 @@
     <vue-popper
       v-if="showPopper"
       ref="popper"
-      v-click-outside="onClosePopper"
       :append-to="appendEl"
       :full-size="true"
     >
@@ -232,6 +232,9 @@ export default {
     },
     onClosePopper () {
       if (this.showPopper) this.showPopper = false
+    },
+    onClosePopper2 () {
+      console.warn('sss')
     },
     onEnter () {
       const item = this.data[this.aheadPointer]
