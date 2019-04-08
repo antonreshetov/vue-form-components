@@ -91,6 +91,15 @@ import { clickOutside } from '../../utils/directives'
 export default {
   name: 'VueSelect',
 
+  $_veeValidate: {
+    name () {
+      return this.name
+    },
+    value () {
+      return this.value
+    }
+  },
+
   components: {
     [Input.name]: Input,
     [Popper.name]: Popper

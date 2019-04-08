@@ -8,6 +8,15 @@
 export default {
   name: 'VueCheckboxGroup',
 
+  $_veeValidate: {
+    name () {
+      return this.name
+    },
+    value () {
+      return this.modelValue
+    }
+  },
+
   model: {
     prop: 'modelValue',
     event: 'change'

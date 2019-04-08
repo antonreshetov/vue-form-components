@@ -65,6 +65,15 @@
 export default {
   name: 'VueInput',
 
+  $_veeValidate: {
+    name () {
+      return this.name
+    },
+    value () {
+      return this.value
+    }
+  },
+
   model: {
     prop: 'value',
     event: 'input'

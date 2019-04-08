@@ -35,6 +35,15 @@
 export default {
   name: 'VueCheckbox',
 
+  $_veeValidate: {
+    name () {
+      return this.name
+    },
+    value () {
+      return this.checked
+    }
+  },
+
   model: {
     prop: 'checked',
     event: 'change'
