@@ -1,12 +1,13 @@
 <template>
   <div
-    class="vue-form"
     :class="{
       'vue-form--label-left': labelPosition === 'left',
       'vue-form--label-right': labelPosition === 'right',
       'vue-form--label-top': labelPosition === 'top',
-      }">
-    <slot></slot>
+    }"
+    class="vue-form"
+  >
+    <slot />
   </div>
 </template>
 
@@ -23,8 +24,14 @@ export default {
   },
 
   props: {
-    model: Object,
-    rules: Object,
+    model: {
+      type: Object,
+      default: () => {}
+    },
+    rules: {
+      type: Object,
+      default: () => {}
+    },
     labelPosition: {
       type: String,
       default: 'right'

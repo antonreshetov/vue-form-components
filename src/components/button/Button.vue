@@ -1,6 +1,5 @@
 <template>
   <button
-    class="vue-button"
     :class="{
       'vue-button--primary': type === 'primary',
       'vue-button--success': type === 'success',
@@ -8,8 +7,10 @@
       'vue-button--danger': type === 'danger',
     }"
     :disabled="disabled"
-    @click="$emit('click')">
-    <slot></slot>
+    class="vue-button"
+    @click="$emit('click')"
+  >
+    <slot />
   </button>
 </template>
 

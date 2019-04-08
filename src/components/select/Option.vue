@@ -1,13 +1,14 @@
 <template>
   <div
-    class="vue-select__option"
     :class="{
       'vue-select__option--selected': isSelected,
       'vue-select__option--hovered': index === select.aheadPointer
-      }"
+    }"
     :disabled="disabled"
+    class="vue-select__option"
     @click="onSelect"
-    @mouseover="onHover">
+    @mouseover="onHover"
+  >
     {{ label }}
   </div>
 </template>
@@ -19,8 +20,14 @@ export default {
   inject: ['select'],
 
   props: {
-    value: [String, Number],
-    label: [String, Number],
+    value: {
+      type: [String, Number],
+      default: ''
+    },
+    label: {
+      type: [String, Number],
+      default: ''
+    },
     disabled: {
       type: Boolean,
       default: false

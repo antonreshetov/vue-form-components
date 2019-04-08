@@ -1,14 +1,21 @@
 <template>
   <div
-    class="vue-form__item">
+    class="vue-form__item"
+  >
     <div
       v-if="label || form.labelPosition !== 'top'"
+      :style="{'flex-basis': form.labelWidth }"
       class="vue-form__item-label"
-      :style="{'flex-basis': form.labelWidth }">{{ label }}</div>
+    >
+      {{ label }}
+    </div>
     <div class="vue-form__item-content">
-      <slot></slot>
+      <slot />
       <transition name="form-slide-fade">
-        <div class="vue-form__item-error" v-if="!isValid">
+        <div
+          v-if="!isValid"
+          class="vue-form__item-error"
+        >
           {{ validateMessage }}
         </div>
       </transition>
@@ -23,9 +30,18 @@ export default {
   inject: ['form'],
 
   props: {
-    label: String,
-    rules: [Object, Array],
-    field: String
+    label: {
+      type: String,
+      default: ''
+    },
+    rules: {
+      type: [Object, Array],
+      default: () => {}
+    },
+    field: {
+      type: String,
+      default: ''
+    }
   },
 
   data () {

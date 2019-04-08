@@ -1,68 +1,83 @@
 <template>
   <div
-    class="vue-select"
     :class="{
       'vue-select--opened': showPopper,
       'vue-select--disabled': disabled
-      }"
+    }"
+    class="vue-select"
     @click="togglePopper"
     @keydown.38="scrollByArrow"
     @keydown.40="scrollByArrow"
-    @keydown.enter="onEnter">
+    @keydown.enter="onEnter"
+  >
     <span
+      v-if="multiple"
       class="vue-select__tag"
-      v-if="multiple">
+    >
       <span ref="tags">
         <template v-for="(item, index) in selected">
           <span
             v-if="collapseTags && index < 1"
+            :key="item.value"
             class="vue-select__tag-item"
-            :key="item.value">
+          >
             {{ item.label }}
             <i
               class="icon-close"
-              @click.stop="onRemoveTag(item)">
-            </i>
+              @click.stop="onRemoveTag(item)"
+            />
           </span>
           <span
             v-if="collapseTags && index === 1"
             :key="item.value"
-            class="vue-select__tag-item vue-select__tag-item--collapsed">
+            class="vue-select__tag-item vue-select__tag-item--collapsed"
+          >
             +{{ selected.length - 1 }}
           </span>
           <span
             v-if="!collapseTags"
+            :key="item.value"
             class="vue-select__tag-item"
-            :key="item.value">
+          >
             {{ item.label }}
             <i
               class="icon-close"
-              @click.stop="onRemoveTag(item)">
-            </i>
+              @click.stop="onRemoveTag(item)"
+            />
           </span>
         </template>
       </span>
     </span>
     <vue-input
+      ref="input"
       v-model="selected.label"
       :readonly="true"
       :placeholder="computedPlaceholder"
       :disabled="disabled"
       :name="name"
-      ref="input">
+    >
       <template slot="suffix">
-        <i class="icon-chevron-down"></i>
+        <i class="icon-chevron-down" />
       </template>
     </vue-input>
     <vue-popper
-      v-click-outside="onClosePopper"
-      :appendTo="appendEl"
       v-if="showPopper"
-      :fullSize="true"
-      ref="popper">
-      <div class="vue-select__option-list" ref="list">
-        <div v-if="!data.length" class="vue-select__option-list-empty">{{ emptyText }}</div>
-        <slot v-else></slot>
+      ref="popper"
+      v-click-outside="onClosePopper"
+      :append-to="appendEl"
+      :full-size="true"
+    >
+      <div
+        ref="list"
+        class="vue-select__option-list"
+      >
+        <div
+          v-if="!data.length"
+          class="vue-select__option-list-empty"
+        >
+          {{ emptyText }}
+        </div>
+        <slot v-else />
       </div>
     </vue-popper>
   </div>
@@ -91,10 +106,24 @@ export default {
     }
   },
 
+  model: {
+    prop: 'value',
+    event: 'change'
+  },
+
   props: {
-    data: Array,
-    value: [String, Number, Array],
-    placeholder: String,
+    data: {
+      type: Array,
+      default: () => []
+    },
+    value: {
+      type: [String, Number, Array],
+      default: ''
+    },
+    placeholder: {
+      type: String,
+      default: ''
+    },
     multiple: {
       type: Boolean,
       default: false
@@ -111,12 +140,10 @@ export default {
       type: String,
       default: 'Empty list'
     },
-    name: String
-  },
-
-  model: {
-    prop: 'value',
-    event: 'change'
+    name: {
+      type: String,
+      default: ''
+    }
   },
 
   data () {
@@ -128,6 +155,15 @@ export default {
       pointerPosTop: null,
       viewportHeight: null,
       tagsHeight: null
+    }
+  },
+
+  computed: {
+    computedPlaceholder () {
+      if (this.multiple) {
+        return this.selected.length === 0 ? this.placeholder : ''
+      }
+      return this.placeholder
     }
   },
 
@@ -144,15 +180,6 @@ export default {
     value () {
       this.setInitValue()
       if (this.multiple) this.refreshInputHeight()
-    }
-  },
-
-  computed: {
-    computedPlaceholder () {
-      if (this.multiple) {
-        return this.selected.length === 0 ? this.placeholder : ''
-      }
-      return this.placeholder
     }
   },
 

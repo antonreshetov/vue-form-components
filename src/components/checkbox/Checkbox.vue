@@ -1,26 +1,31 @@
 <template>
   <div class="vue-checkbox">
     <label
-      class="vue-checkbox"
       :class="{
         'vue-checkbox--checked': isChecked,
         'vue-checkbox--bordered': type === 'border',
         'vue-checkbox--disabled': disabled
-        }">
+      }"
+      class="vue-checkbox"
+    >
       <input
-        type="checkbox"
         :id="`vue-checkbox-${_uid}`"
         :checked="isChecked"
         :name="name"
         :disabled="disabled"
         :value="value"
-        @change="onChange">
+        type="checkbox"
+        @change="onChange"
+      >
       <div class="vue-checkbox__inner">
-        <i class="icon-check" v-if="isChecked"></i>
+        <i
+          v-if="isChecked"
+          class="icon-check"
+        />
       </div>
       <span class="vue-checkbox__label">
         <span v-if="label">{{ label }}</span>
-        <slot v-else></slot>
+        <slot v-else />
       </span>
     </label>
   </div>
@@ -30,26 +35,38 @@
 export default {
   name: 'VueCheckbox',
 
+  model: {
+    prop: 'checked',
+    event: 'change'
+  },
+
   props: {
     checked: Boolean,
-    value: [String, Number, Object, Boolean],
-    name: String,
-    label: String,
-    type: String,
+    value: {
+      type: [String, Number, Object, Boolean],
+      default: ''
+    },
+    name: {
+      type: String,
+      default: ''
+    },
+    label: {
+      type: String,
+      default: ''
+    },
+    type: {
+      type: String,
+      default: ''
+    },
     disabled: {
       type: Boolean,
       default: false
     }
   },
 
-  model: {
-    prop: 'checked',
-    event: 'change'
-  },
-
   computed: {
     isGroup () {
-      if (this.$parent.$options.name === 'VueCheckboxGroup') return true
+      return this.$parent.$options.name === 'VueCheckboxGroup'
     },
     isChecked () {
       if (!this.isGroup) return this.checked
@@ -61,6 +78,7 @@ export default {
           return !!this.$parent.modelValue.find(item => item === this.value)
         }
       }
+      return false
     }
   },
 
