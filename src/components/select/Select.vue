@@ -1,5 +1,6 @@
 <template>
   <div
+    v-click-outside="onClosePopper"
     :class="{
       'vue-select--opened': showPopper,
       'vue-select--disabled': disabled
@@ -51,7 +52,7 @@
     <vue-input
       ref="input"
       v-model="selected.label"
-      v-click-outside="onClosePopper"
+
       :readonly="true"
       :placeholder="computedPlaceholder"
       :disabled="disabled"
