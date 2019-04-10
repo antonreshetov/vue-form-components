@@ -51,6 +51,7 @@
       :value="value"
       :rows="rows"
       class="vue-textarea__inner"
+      @input="onInput"
     />
     <div
       v-if="this.$slots.append && type !== 'textarea'"
