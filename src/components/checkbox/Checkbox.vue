@@ -52,7 +52,7 @@ export default {
   props: {
     checked: Boolean,
     value: {
-      type: [String, Number, Object, Boolean],
+      type: [String, Number, Boolean],
       default: ''
     },
     name: {
