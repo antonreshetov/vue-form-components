@@ -1,5 +1,8 @@
 <template>
-  <div class="vue-checkbox-group">
+  <div
+    class="vue-checkbox-group"
+    :name="name"
+  >
     <slot />
   </div>
 </template>
@@ -26,6 +29,10 @@ export default {
     modelValue: {
       type: Array,
       default: () => []
+    },
+    name: {
+      type: String,
+      default: ''
     }
   },
 
