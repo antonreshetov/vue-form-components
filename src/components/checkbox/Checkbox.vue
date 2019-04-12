@@ -35,6 +35,15 @@
 export default {
   name: 'VueCheckbox',
 
+  $_veeValidate: {
+    name () {
+      return this.name
+    },
+    value () {
+      return this.checked
+    }
+  },
+
   model: {
     prop: 'checked',
     event: 'change'
@@ -43,7 +52,7 @@ export default {
   props: {
     checked: Boolean,
     value: {
-      type: [String, Number, Object, Boolean],
+      type: [String, Number, Boolean],
       default: ''
     },
     name: {

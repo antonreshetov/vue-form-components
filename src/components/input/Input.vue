@@ -51,6 +51,7 @@
       :value="value"
       :rows="rows"
       class="vue-textarea__inner"
+      @input="onInput"
     />
     <div
       v-if="this.$slots.append && type !== 'textarea'"
@@ -64,6 +65,15 @@
 <script>
 export default {
   name: 'VueInput',
+
+  $_veeValidate: {
+    name () {
+      return this.name
+    },
+    value () {
+      return this.value
+    }
+  },
 
   model: {
     prop: 'value',

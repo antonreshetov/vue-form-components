@@ -13,10 +13,10 @@
       <slot />
       <transition name="form-slide-fade">
         <div
-          v-if="!isValid"
+          v-if="showErrorMsg"
           class="vue-form__item-error"
         >
-          {{ validateMessage }}
+          {{ showErrorMsg }}
         </div>
       </transition>
     </div>
@@ -34,24 +34,24 @@ export default {
       type: String,
       default: ''
     },
-    rules: {
-      type: [Object, Array],
-      default: () => {}
-    },
     field: {
       type: String,
       default: ''
     }
   },
 
-  data () {
-    return {
-      isValid: true,
-      validateMessage: '',
-      validateState: false
+  computed: {
+    showErrorMsg () {
+      let msg
+      if (this.errors.items.length) {
+        const item = this.errors.items.find(i => i.field === this.field)
+        if (item) msg = item.msg
+      }
+      return msg
     }
   }
 }
+
 </script>
 
 <style lang="scss">

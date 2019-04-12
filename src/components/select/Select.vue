@@ -1,5 +1,6 @@
 <template>
   <div
+    v-click-outside="onClosePopper"
     :class="{
       'vue-select--opened': showPopper,
       'vue-select--disabled': disabled
@@ -51,6 +52,7 @@
     <vue-input
       ref="input"
       v-model="selected.label"
+
       :readonly="true"
       :placeholder="computedPlaceholder"
       :disabled="disabled"
@@ -63,7 +65,6 @@
     <vue-popper
       v-if="showPopper"
       ref="popper"
-      v-click-outside="onClosePopper"
       :append-to="appendEl"
       :full-size="true"
     >
@@ -90,6 +91,15 @@ import { clickOutside } from '../../utils/directives'
 
 export default {
   name: 'VueSelect',
+
+  $_veeValidate: {
+    name () {
+      return this.name
+    },
+    value () {
+      return this.value
+    }
+  },
 
   components: {
     [Input.name]: Input,
@@ -164,6 +174,9 @@ export default {
         return this.selected.length === 0 ? this.placeholder : ''
       }
       return this.placeholder
+    },
+    selectedValue () {
+      return this.selected.map(i => i.value)
     }
   },
 
@@ -189,7 +202,7 @@ export default {
       if (this.multiple) {
         this.addItem(e)
         this.refreshInputHeight()
-        this.$emit('change', this.selected)
+        this.$emit('change', this.selectedValue)
         this.$refs.popper.update()
       } else {
         this.selected = e
@@ -210,7 +223,7 @@ export default {
 
       if (this.multiple) {
         this.selected = this.value.map(item => {
-          return this.data.find(i => i.value === item.value)
+          return this.data.find(i => i.value === item)
         })
       } else {
         this.selected = this.data.find(item => item.value === this.value)
@@ -224,12 +237,15 @@ export default {
     onClosePopper () {
       if (this.showPopper) this.showPopper = false
     },
+    onClosePopper2 () {
+      console.warn('sss')
+    },
     onEnter () {
       const item = this.data[this.aheadPointer]
 
       if (this.multiple) {
         this.addItem(item)
-        this.$emit('change', this.selected)
+        this.$emit('change', this.selectedValue)
       } else {
         this.$emit('change', item.value)
       }
@@ -305,7 +321,7 @@ export default {
       const index = this.selected.findIndex(item => item.value === tag.value)
       this.$emit('remove-tag', this.selected[index])
       this.selected.splice(index, 1)
-      this.$emit('change', this.selected)
+      this.$emit('change', this.selectedValue)
       if (this.showPopper) this.$refs.popper.update()
     }
   }
