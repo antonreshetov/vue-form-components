@@ -8,6 +8,7 @@ import Option from './select/Option.vue'
 import Form from './form/Form.vue'
 import FormItem from './form/FormItem.vue'
 import VeeValidate from 'vee-validate'
+import FormBuilder from './from-builder/FormBuilder.vue'
 
 const components = [
   Input,
@@ -18,7 +19,8 @@ const components = [
   Select,
   Option,
   Form,
-  FormItem
+  FormItem,
+  FormBuilder
 ]
 
 export default {
@@ -48,5 +50,6 @@ export {
   Select,
   Option,
   Form,
-  FormItem
+  FormItem,
+  FormBuilder
 }
