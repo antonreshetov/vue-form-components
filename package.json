@@ -1,7 +1,7 @@
 {
   "name": "vfc",
   "description": "Vue form components with validation",
-  "version": "2.0.0",
+  "version": "1.1.2",
   "private": false,
   "repository": {
     "type": "git",
@@ -58,5 +58,18 @@
     "sass-loader": "^7.1.0",
     "vue-svg-loader": "^0.10.0",
     "vue-template-compiler": "^2.5.17"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.js": [
+      "vue-cli-service lint",
+      "git add"
+    ],
+    "*.vue": [
+      "vue-cli-service lint",
+      "git add"
+    ]
   }
 }
