@@ -61,6 +61,7 @@
             <vue-checkbox
               v-for="i in field.options"
               :key="i.value"
+              :type="field.inputType"
               :value="i.value"
               :label="i.label"
             />
@@ -69,6 +70,7 @@
             v-else
             v-model="clonedModel[field.model]"
             v-validate="field.validate"
+            :type="field.inputType"
             :name="field.name"
             :label="field.checkboxLabel"
             @change="onUpdate"
@@ -81,6 +83,7 @@
             :key="i.value"
             v-model="clonedModel[field.model]"
             v-validate="field.validate"
+            :type="field.inputType"
             :name="field.name"
             :value="i.value"
             :label="i.label"
