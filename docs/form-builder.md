@@ -198,19 +198,19 @@ export default {
 | --------------------- | ----------------------------------------------------------- | ------------------ | ------------------------------------------------------- |
 | `type`                | Type of field                                               | `String`           | input, select, checkbox, radio, actions                 |
 | `inputType`           | Type of input                                               | `String`           | text, number, textarea, password and border<sup>1</sup> |
-| `buttons`             | Form action buttons. Available if type is `actions`         | `Array`            |                                                         |
-| `buttons.type`        | Type of button. Also event emitter type for `@action`       | `String`           | submit, cancel                                          |
-| `buttons.buttonType`  | Type of <a href="#/components/button">Button</a> component | `String`           | primary, success, warning, danger                       |
-| `buttons.buttonLabel` | Label for button                                           | `String`           |                                                         |
+| `buttons`             | Form action buttons. Available if type is `actions`         | `Array`            | Array of object                                                        |
+| `buttons[index].type`        | Type of button. Also event emitter type for `@action`       | `String`           | submit, cancel                                          |
+| `buttons[index].buttonType`  | Type of <a href="#/components/button">Button</a> component | `String`           | primary, success, warning, danger                       |
+| `buttons[index].buttonLabel` | Label for button                                           | `String`           |                                                         |
 | `name`                | Field detection to start validation and error messages      | `Object`           |                                                         |
 | `label`               | Label of the form item                                      | `String`           |                                                         |
 | `model`               | Name of property in the model                               | `String`           |                                                         |
 | `disabled`            | Disable the field                                           | `Boolean`          |                                                         |
 | `readonly`            | Same as `readonly` in native input                          | `Boolean`          |                                                         |
 | `placeholder`         | Placeholder of value                                        | `Boolean`          |                                                         |
-| `options`             | Options for list components, like Select or Checkbox        | `Array`            |                                                         |
-| `options.label`       | Label of option                                             | `String`           |                                                         |
-| `options.value`       | Value of option                                             | `String`, `Number` |                                                         |
+| `options`             | Options for list components, like Select or Checkbox        | `Array`            |  Array of object                                                     |
+| `options[index].label`       | Label of option                                             | `String`           |                                                         |
+| `options[index].value`       | Value of option                                             | `String`, `Number` |                                                         |
 | `validate`            | VeeValidate <a href="https://baianat.github.io/vee-validate/guide/rules.html?ref=vfc">rules</a>                                                            | `Object`           |                                                         |
 
  - <sup>1</sup> `border` is available only if `type` is checkbox or radio.
