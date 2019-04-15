@@ -1,15 +1,20 @@
 <template>
   <div
-    class="vue-popper"
     :id="`vue-popper-${_uid}`"
+    class="vue-popper"
     @mouseover="$emit('mouseover')"
-    @mouseout="$emit('mouseout')">
+    @mouseout="$emit('mouseout')"
+  >
     <div
+      :style="{'max-height': height + 'px'}"
       class="vue-popper__inner"
-      :style="{'max-height': height + 'px'}">
-      <slot></slot>
+    >
+      <slot />
     </div>
-    <div class="vue-popper__arrow" x-arrow></div>
+    <div
+      class="vue-popper__arrow"
+      x-arrow
+    />
   </div>
 </template>
 
@@ -20,7 +25,10 @@ export default {
   name: 'VuePopper',
 
   props: {
-    appendTo: [String, HTMLDivElement],
+    appendTo: {
+      type: [String, HTMLDivElement],
+      default: ''
+    },
     fullSize: {
       type: Boolean,
       default: false

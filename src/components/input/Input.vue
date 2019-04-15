@@ -1,31 +1,34 @@
 <template>
   <div
     :class="{
-      'vue-input': this.type !== 'textarea',
-      'vue-textarea': this.type === 'textarea',
-      'vue-input--prefix': this.$slots.prefix,
-      'vue-input--suffix': this.$slots.suffix,
-      'vue-input--prepend': this.$slots.prepend,
-      'vue-input--append': this.$slots.append,
-    }">
+      'vue-input': type !== 'textarea',
+      'vue-textarea': type === 'textarea',
+      'vue-input--prefix': $slots.prefix,
+      'vue-input--suffix': $slots.suffix,
+      'vue-input--prepend': $slots.prepend,
+      'vue-input--append': $slots.append,
+    }"
+  >
     <div
-      v-if="this.$slots.prefix && type !== 'textarea'"
-      class="vue-input__prefix">
-      <slot name="prefix"></slot>
+      v-if="$slots.prefix && type !== 'textarea'"
+      class="vue-input__prefix"
+    >
+      <slot name="prefix" />
     </div>
     <div
-      v-if="this.$slots.suffix && type !== 'textarea'"
-      class="vue-input__suffix">
-      <slot name="suffix"></slot>
+      v-if="$slots.suffix && type !== 'textarea'"
+      class="vue-input__suffix"
+    >
+      <slot name="suffix" />
     </div>
     <div
-      v-if="this.$slots.prepend && type !== 'textarea'"
-      class="vue-input__prepend">
-      <slot name="prepend"></slot>
+      v-if="$slots.prepend && type !== 'textarea'"
+      class="vue-input__prepend"
+    >
+      <slot name="prepend" />
     </div>
     <input
       v-if="type !== 'textarea'"
-      class="vue-input__inner"
       :name="name"
       :type="type"
       :value="value"
@@ -35,23 +38,26 @@
       :max="max"
       :min="min"
       :autocomplete="[ autocomplete ? 'off' : 'on' ]"
+      class="vue-input__inner"
       @input="onInput"
     >
     <textarea
       v-else
-      class="vue-textarea__inner"
       :name="name"
       :type="type"
       :placeholder="placeholder"
       :disabled="disabled"
       :readonly="readonly"
       :value="value"
-      :rows="rows">
-    </textarea>
+      :rows="rows"
+      class="vue-textarea__inner"
+      @input="onInput"
+    />
     <div
       v-if="this.$slots.append && type !== 'textarea'"
-      class="vue-input__append">
-      <slot name="append"></slot>
+      class="vue-input__append"
+    >
+      <slot name="append" />
     </div>
   </div>
 </template>
@@ -60,13 +66,33 @@
 export default {
   name: 'VueInput',
 
+  $_veeValidate: {
+    name () {
+      return this.name
+    },
+    value () {
+      return this.value
+    }
+  },
+
+  model: {
+    prop: 'value',
+    event: 'input'
+  },
+
   props: {
     type: {
       type: String,
       default: 'text'
     },
-    value: [String, Number],
-    name: String,
+    value: {
+      type: [String, Number],
+      default: ''
+    },
+    name: {
+      type: String,
+      default: ''
+    },
     readonly: {
       type: Boolean,
       default: false
@@ -75,9 +101,18 @@ export default {
       type: Boolean,
       default: false
     },
-    min: Number,
-    max: Number,
-    placeholder: String,
+    min: {
+      type: Number,
+      default: null
+    },
+    max: {
+      type: Number,
+      default: null
+    },
+    placeholder: {
+      type: String,
+      default: ''
+    },
     disabled: {
       type: Boolean,
       default: false
@@ -86,11 +121,6 @@ export default {
       type: Number,
       default: 3
     }
-  },
-
-  model: {
-    prop: 'value',
-    event: 'input'
   },
 
   methods: {

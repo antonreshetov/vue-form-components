@@ -1,25 +1,27 @@
 <template>
   <label
-    class="vue-radio"
     :class="{
       'vue-radio--checked': isChecked,
       'vue-radio--disabled': disabled,
       'vue-radio--bordered': type === 'border'
-    }">
+    }"
+    class="vue-radio"
+  >
     <span class="vue-radio__input">
-      <span class="vue-radio__inner"></span>
+      <span class="vue-radio__inner" />
       <input
-        type="radio"
         :id="`vue-radio-${_uid}`"
         :name="name"
         :checked="isChecked"
         :disabled="disabled"
         :value="value"
-        @change="onChange">
+        type="radio"
+        @change="onChange"
+      >
     </span>
     <span class="vue-radio__label">
       <span v-if="label">{{ label }}</span>
-      <slot v-else></slot>
+      <slot v-else />
     </span>
   </label>
 </template>
@@ -28,21 +30,45 @@
 export default {
   name: 'VueRadio',
 
-  props: {
-    modelValue: {},
-    value: [String, Number],
-    label: String,
-    type: String,
-    name: String,
-    disabled: {
-      type: Boolean,
-      default: false
+  $_veeValidate: {
+    name () {
+      return this.name
+    },
+    value () {
+      return this.modelValue
     }
   },
 
   model: {
     prop: 'modelValue',
     event: 'change'
+  },
+
+  props: {
+    modelValue: {
+      type: [String, Number],
+      default: () => {}
+    },
+    value: {
+      type: [String, Number],
+      default: ''
+    },
+    label: {
+      type: String,
+      default: ''
+    },
+    type: {
+      type: String,
+      default: ''
+    },
+    name: {
+      type: String,
+      default: ''
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    }
   },
 
   computed: {

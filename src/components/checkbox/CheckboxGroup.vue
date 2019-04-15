@@ -1,6 +1,9 @@
 <template>
-  <div class="vue-checkbox-group">
-    <slot></slot>
+  <div
+    class="vue-checkbox-group"
+    :name="name"
+  >
+    <slot />
   </div>
 </template>
 
@@ -8,8 +11,13 @@
 export default {
   name: 'VueCheckboxGroup',
 
-  props: {
-    modelValue: Array
+  $_veeValidate: {
+    name () {
+      return this.name
+    },
+    value () {
+      return this.modelValue
+    }
   },
 
   model: {
@@ -17,14 +25,21 @@ export default {
     event: 'change'
   },
 
+  props: {
+    modelValue: {
+      type: Array,
+      default: () => []
+    },
+    name: {
+      type: String,
+      default: ''
+    }
+  },
+
   data () {
     return {
       value: []
     }
-  },
-
-  created () {
-    this.value = this.modelValue
   },
 
   watch: {
@@ -34,6 +49,10 @@ export default {
     value () {
       this.$emit('change', this.value)
     }
+  },
+
+  created () {
+    this.value = this.modelValue
   }
 }
 </script>

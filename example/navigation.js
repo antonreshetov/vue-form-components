@@ -29,6 +29,10 @@ export default {
     {
       title: 'Form',
       path: '/components/form'
+    },
+    {
+      title: 'Form Builder',
+      path: '/components/form-builder'
     }
   ]
 }

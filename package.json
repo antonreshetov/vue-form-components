@@ -32,26 +32,44 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
-    "async-validator": "^1.10.0",
     "popper.js": "^1.14.4",
-    "vue": "^2.5.17",
+    "vee-validate": "^2.2.0",
+    "vue": "^2.6.0",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.0.3",
-    "@vue/cli-plugin-eslint": "^3.0.3",
-    "@vue/cli-plugin-unit-jest": "^3.0.3",
-    "@vue/cli-service": "^3.0.3",
-    "@vue/eslint-config-standard": "^3.0.3",
+    "@vue/cli-plugin-babel": "^3.5.0",
+    "@vue/cli-plugin-eslint": "^3.5.0",
+    "@vue/cli-plugin-unit-jest": "^3.5.0",
+    "@vue/cli-service": "^3.5.0",
+    "@vue/eslint-config-standard": "^4.0.0",
     "@vue/test-utils": "^1.0.0-beta.20",
     "axios": "^0.18.0",
-    "babel-core": "7.0.0-bridge.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-eslint": "^10.0.1",
     "babel-jest": "^23.0.1",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^5.2.2",
+    "flush-promises": "^1.0.2",
     "highlight.js": "^9.12.0",
+    "lint-staged": "^8.1.5",
     "marked": "^0.5.1",
     "node-sass": "^4.9.3",
     "sass-loader": "^7.1.0",
     "vue-svg-loader": "^0.10.0",
     "vue-template-compiler": "^2.5.17"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.js": [
+      "vue-cli-service lint",
+      "git add"
+    ],
+    "*.vue": [
+      "vue-cli-service lint",
+      "git add"
+    ]
   }
 }
