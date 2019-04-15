@@ -1,5 +1,19 @@
 # Changelog
 
-`1.1.0` - ADD: Collapse tags props in Select
+## `2.0.0`
+  
+### BREAKING 
+  - Drop async validation
+  - Add VeeValidation for form validation
 
-`1.0.0` - First release
+### ADD
+  - Form Builder
+
+## `1.1.0`
+
+### ADD
+  - Collapse tags props in Select
+
+## `1.0.0`
+
+First release
