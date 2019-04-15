@@ -125,30 +125,30 @@ Change the alignment of labels
 
 Form component allows you to verify your input data.
 
-To validate form item just add the `rules` attribute for `vue-form` to pass validation rules, and set `field` attribute for `vue-form-item` as a specific key that needs to be validated.
+To validate form item just add the `v-validate` attribute for Input, Select, Radio or Checkbox components to pass validation rules.
 
-See more information at [async-validator](https://github.com/yiminghe/async-validator).
+See more information at [VeeValidate](https://baianat.github.io/vee-validate/guide/rules.html?ref=vfc).
 
 ```example
 <template>
-  <vue-form :model="form" :rules="formRules" style="width: 500px;" label-position="right" label-width="150px" ref="form">
+  <vue-form :model="form" style="width: 500px;" label-position="right" label-width="150px" ref="form">
     <vue-form-item field="email" label="Email">
-      <vue-input v-model="form.email" style="width: 100%"></vue-input>
+      <vue-input v-model="form.email" name="email" v-validate="'required|email'"  style="width: 100%"></vue-input>
     </vue-form-item>
     <vue-form-item field="password" label="Password">
-      <vue-input v-model="form.password"></vue-input>
+      <vue-input v-model="form.password" name="password" v-validate="'required'"></vue-input>
     </vue-form-item>
     <vue-form-item field="delivery" label="Delivery">
-      <vue-radio v-model="form.delivery" value="1">Radio 1</vue-radio>
-      <vue-radio v-model="form.delivery" value="2">Radio 2</vue-radio>
+      <vue-radio v-model="form.delivery" name="delivery" v-validate="'required'" value="1">Radio 1</vue-radio>
+      <vue-radio v-model="form.delivery" name="delivery" v-validate="'required'" value="2">Radio 2</vue-radio>
     </vue-form-item>
     <vue-form-item field="city" label="City">
-      <vue-select v-model="form.city" :data="options" placeholder="Select">
+      <vue-select v-model="form.city" :data="options" name="city" v-validate="'required'" placeholder="Select">
         <vue-option v-for="i in options" :key="i.value" :value="i.value" :label="i.label"></vue-option>
       </vue-select>
     </vue-form-item>
-     <vue-form-item field="terms" label="Terms">
-      <vue-checkbox v-model="form.terms">I'm agree</vue-checkbox>
+    <vue-form-item field="terms" label="Terms">
+      <vue-checkbox v-model="form.terms" name="terms" v-validate="'required:true'">I'm agree</vue-checkbox>
     </vue-form-item>
     <vue-form-item>
       <vue-button @click="onReset">Reset</vue-button>
@@ -167,41 +167,23 @@ See more information at [async-validator](https://github.com/yiminghe/async-vali
           terms: false,
           delivery: '',
           city: '',
-        },
-        formRules: {
-          email: [
-            { required: true, message: 'Email is required' },
-            { type: 'email', message: 'Email is not correct' }
-          ],
-          password: [
-            { required: true, message: 'Password is required' },
-            { min: 3, message: 'Password length must be greater than 3 characters' }
-          ],
-          terms: [
-            { pattern: /true/, message: 'Terms is required' }
-          ],
-          delivery: [
-            { required: true, message: 'Delivery is required' }
-          ],
-          city: [
-            { required: true, message: 'City is required' }
-          ]
         }
       }
     },
     methods: {
       async onSubmit () {
-        try {
-          await this.$refs.form.validate()
-        } catch (err) {
-          console.warn('Form is not valid')
-        }
+        const res = await this.$validator.validate()
+        if (res) alert('Form is valid')
       },
       onReset () {
-        for (let i in this.form) {
-          i === 'terms' ? this.form[i] = false : this.form[i] = ''
-        }
-        this.$refs.form.resetValidation()
+        Object.keys(this.form).map(f => {
+          if (typeof this.form[f] === 'boolean') {
+            this.form[f] = false
+          } else {
+            this.form[f] = ''
+          }
+        })
+        this.$validator.reset()
       }
     }
   }
@@ -213,17 +195,8 @@ See more information at [async-validator](https://github.com/yiminghe/async-vali
 | Attributes       | Description                 | Type     | Accepted values  | Default |
 | ---------------- | --------------------------- | -------- | ---------------- | ------- |
 | `model`          | Data of form components     | `Object` | -                | -       |
-| `rules`          | Validation rules of form    | `Object` | -                | -       |
 | `label-position` | Position of label form item | `String` | left, right, top | right   |
 | `label-width`    | Width of label form item    | `String` |                  | 100px   |
-
-## Form methods
-
-| Method                                | Description                              | Parameters               |
-| ------------------------------------- | ---------------------------------------- | ------------------------ |
-| `validate()`                          | Validate all form item. Return `Promise` |                          |
-| `resetValidation()`                   | Remove all validation result             |                          |
-| `resetFieldValidation(field: string)` | Remove field validation result           | `field` - Field to reset |
 
 ## Form item attributes
 
