@@ -1,17 +1,17 @@
 <template>
   <div
-    class="vue-form"
     :class="{
       'vue-form--label-left': labelPosition === 'left',
       'vue-form--label-right': labelPosition === 'right',
       'vue-form--label-top': labelPosition === 'top',
-      }">
-    <slot></slot>
+    }"
+    class="vue-form"
+  >
+    <slot />
   </div>
 </template>
 
 <script>
-import AsyncValidator from 'async-validator'
 
 export default {
   name: 'VueForm',
@@ -23,8 +23,10 @@ export default {
   },
 
   props: {
-    model: Object,
-    rules: Object,
+    model: {
+      type: Object,
+      default: () => {}
+    },
     labelPosition: {
       type: String,
       default: 'right'
@@ -32,68 +34,6 @@ export default {
     labelWidth: {
       type: String,
       default: '100px'
-    }
-  },
-
-  data () {
-    return {
-      validator: this.rules ? new AsyncValidator(this.rules) : undefined
-    }
-  },
-
-  methods: {
-    validate () {
-      return new Promise((resolve, reject) => {
-        console.warn(this.validator)
-        this.validator.validate(this.model, (err, f) => {
-          this.$children.forEach(child => {
-            if (!this.isChildFormItem(child)) return
-
-            this.setChildOptions(child, '', true, true)
-          })
-
-          if (!err) return resolve('Form is valid')
-
-          Object.keys(this.model).forEach(item => {
-            err.forEach(err => {
-              if (err.field === item) {
-                this.$children.forEach(child => {
-                  if (!this.isChildFormItem(child)) return
-
-                  if (child.field === item) {
-                    this.setChildOptions(child, err.message, false, true)
-                  }
-                })
-              }
-            })
-            return reject(new Error('Form is not valid'))
-          })
-        })
-      })
-    },
-    resetValidation () {
-      this.$children.forEach(child => {
-        if (!this.isChildFormItem(child)) return
-
-        this.setChildOptions(child, '', true, false)
-      })
-    },
-    resetFieldValidation (field) {
-      this.$children.forEach(child => {
-        if (!this.isChildFormItem(child)) return
-
-        if (child.field === field) {
-          this.setChildOptions(child, '', true, false)
-        }
-      })
-    },
-    isChildFormItem (child) {
-      return child.$options.name === 'VueFormItem'
-    },
-    setChildOptions (child, message, valid, state) {
-      child.validateMessage = message
-      child.isValid = valid
-      child.validateState = state
     }
   }
 }
