@@ -76,7 +76,8 @@ import {
   Select,
   Option,
   Form,
-  FormItem
+  FormItem,
+  FormBuilder
 } from 'vfc'
 ```
 
