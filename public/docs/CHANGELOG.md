@@ -4,7 +4,7 @@
   
 ### BREAKING 
   - Drop async validation
-  - Add VeeValidation for form validation
+  - Add VeeValidate for form validation
 
 ### ADD
   - Form Builder
