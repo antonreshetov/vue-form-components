@@ -9,8 +9,8 @@ if [[ $REPLY =~ ^[Yy]$ ]]
 then
   npm run test:unit && npm run lint && npm run build
   git add -A
-  git commit -m "Dist: Build $VERSION"
-  npm version $VERSION -m "Release $VERSION"
+  git commit -m "release $VERSION"
+  npm version $VERSION -m "release $VERSION"
   git push origin dev
   npm publish
 fi
