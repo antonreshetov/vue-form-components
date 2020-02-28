@@ -68,17 +68,28 @@
       :append-to="appendEl"
       :full-size="true"
     >
+      <vue-input
+        v-if="searchable"
+        v-model="search"
+        placeholder="Search"
+        class="vue-select__search"
+      />
       <div
         ref="list"
         class="vue-select__option-list"
       >
+        <vue-option
+          v-for="i in filteredData"
+          :key="i.value"
+          :value="i.value"
+          :label="i.label"
+        />
         <div
-          v-if="!data.length"
+          v-if="!data.length || !filteredData.length"
           class="vue-select__option-list-empty"
         >
           {{ emptyText }}
         </div>
-        <slot v-else />
       </div>
     </vue-popper>
   </div>
@@ -153,6 +164,10 @@ export default {
     name: {
       type: String,
       default: ''
+    },
+    searchable: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -164,7 +179,8 @@ export default {
       aheadPointer: 0,
       pointerPosTop: null,
       viewportHeight: null,
-      tagsHeight: null
+      tagsHeight: null,
+      search: ''
     }
   },
 
@@ -177,6 +193,11 @@ export default {
     },
     selectedValue () {
       return this.selected.map(i => i.value)
+    },
+    filteredData () {
+      return this.data.filter(item => {
+        return item.label.toLowerCase().includes(this.search.toLowerCase())
+      })
     }
   },
 
@@ -234,8 +255,9 @@ export default {
 
       this.showPopper = !this.showPopper
     },
-    onClosePopper () {
-      if (this.showPopper) this.showPopper = false
+    onClosePopper (e) {
+      const isPopperInput = e.target.classList.contains('vue-input__inner')
+      if (this.showPopper && !isPopperInput) this.showPopper = false
     },
     onClosePopper2 () {
       console.warn('sss')
@@ -375,6 +397,9 @@ export default {
     &-list-empty {
       font-size: 14px;
     }
+  }
+  &__search {
+    margin-bottom: 10px;
   }
   .vue-input {
     &__inner {
