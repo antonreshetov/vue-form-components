@@ -1,6 +1,26 @@
 <template>
   <div class="dev">
-    <h1>Workbench</h1>
+    <h2>Default Select</h2>
+    <div style="max-width: 400px; margin-bottom: 20px">
+      <vue-select
+        v-model="selected"
+        :data="options"
+        placeholder="Select"
+        :multiple="true"
+        :value="0"
+      />
+    </div>
+    <h2>Searchable functionality Select</h2>
+    <div style="max-width: 400px">
+      <vue-select
+        v-model="selected2"
+        :data="options2"
+        placeholder="Select"
+        search-placeholder="Search"
+        :multiple="true"
+        :searchable="true"
+      />
+    </div>
   </div>
 </template>
 
@@ -10,7 +30,18 @@ export default {
 
   data () {
     return {
-
+      options: [
+        { label: 'label 1', value: 1 },
+        { label: 'label 2', value: 2 },
+        { label: 'label 3', value: 3 }
+      ],
+      options2: [
+        { label: 'label 1', value: 1 },
+        { label: 'label 2', value: 2, disabled: true },
+        { label: 'label 3', value: 3 }
+      ],
+      selected: [],
+      selected2: []
     }
   }
 }
